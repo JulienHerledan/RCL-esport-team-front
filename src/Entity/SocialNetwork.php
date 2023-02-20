@@ -37,6 +37,12 @@ class SocialNetwork
      */
     private $updatedAt;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Member::class, inversedBy="socialNetworks")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $member;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -86,6 +92,18 @@ class SocialNetwork
     public function setUpdatedAt(\DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getMember(): ?Member
+    {
+        return $this->member;
+    }
+
+    public function setMember(?Member $member): self
+    {
+        $this->member = $member;
 
         return $this;
     }
