@@ -47,6 +47,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->articles = new ArrayCollection();
         $this->members = new ArrayCollection();
+        $this->applies = new ArrayCollection();
     }
 
     /**
@@ -73,6 +74,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\OneToMany(targetEntity=Member::class, mappedBy="createdBy")
      */
     private $members;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Apply::class, mappedBy="acceptedBy")
+     */
+    private $applies;
 
     public function getId(): ?int
     {
@@ -260,6 +266,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($member->getCreatedBy() === $this) {
                 $member->setCreatedBy(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Apply>
+     */
+    public function getApplies(): Collection
+    {
+        return $this->applies;
+    }
+
+    public function addApply(Apply $apply): self
+    {
+        if (!$this->applies->contains($apply)) {
+            $this->applies[] = $apply;
+            $apply->setAcceptedBy($this);
+        }
+
+        return $this;
+    }
+
+    public function removeApply(Apply $apply): self
+    {
+        if ($this->applies->removeElement($apply)) {
+            // set the owning side to null (unless already changed)
+            if ($apply->getAcceptedBy() === $this) {
+                $apply->setAcceptedBy(null);
             }
         }
 

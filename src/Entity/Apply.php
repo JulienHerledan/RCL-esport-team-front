@@ -52,6 +52,11 @@ class Apply
      */
     private $updatedAt;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="applies")
+     */
+    private $acceptedBy;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -137,6 +142,18 @@ class Apply
     public function setUpdatedAt(?\DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getAcceptedBy(): ?User
+    {
+        return $this->acceptedBy;
+    }
+
+    public function setAcceptedBy(?User $acceptedBy): self
+    {
+        $this->acceptedBy = $acceptedBy;
 
         return $this;
     }
