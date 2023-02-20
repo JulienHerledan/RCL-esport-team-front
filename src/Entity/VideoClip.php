@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\SocialNetworkRepository;
+use App\Repository\VideoClipRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=SocialNetworkRepository::class)
+ * @ORM\Entity(repositoryClass=VideoClipRepository::class)
  */
-class SocialNetwork
+class VideoClip
 {
     /**
      * @ORM\Id
@@ -18,14 +18,14 @@ class SocialNetwork
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=64)
-     */
-    private $name;
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
-    private $image;
+    private $link;
+
+    /**
+     * @ORM\Column(type="date")
+     */
+    private $date;
 
     /**
      * @ORM\Column(type="datetime_immutable")
@@ -42,26 +42,26 @@ class SocialNetwork
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getLink(): ?string
     {
-        return $this->name;
+        return $this->link;
     }
 
-    public function setName(string $name): self
+    public function setLink(string $link): self
     {
-        $this->name = $name;
+        $this->link = $link;
 
         return $this;
     }
 
-    public function getImage(): ?string
+    public function getDate(): ?\DateTimeInterface
     {
-        return $this->image;
+        return $this->date;
     }
 
-    public function setImage(string $image): self
+    public function setDate(\DateTimeInterface $date): self
     {
-        $this->image = $image;
+        $this->date = $date;
 
         return $this;
     }
@@ -79,7 +79,7 @@ class SocialNetwork
     }
 
     public function getUpdatedAt(): ?\DateTimeImmutable
-    {   
+    {
         return $this->updatedAt;
     }
 
