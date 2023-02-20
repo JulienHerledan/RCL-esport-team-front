@@ -39,13 +39,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $password;
 
     /**
-     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="author")
+     * @ORM\OneToMany(targetEntity=Article::class, mappedBy="author")
      */
-    private $comments;
+    private $articles;
 
     public function __construct()
     {
-        $this->comments = new ArrayCollection();
+        $this->articles = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -138,29 +138,29 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection<int, Comment>
+     * @return Collection<int, Article>
      */
-    public function getComments(): Collection
+    public function getArticles(): Collection
     {
-        return $this->comments;
+        return $this->articles;
     }
 
-    public function addComment(Comment $comment): self
+    public function addArticle(Article $article): self
     {
-        if (!$this->comments->contains($comment)) {
-            $this->comments[] = $comment;
-            $comment->setAuthor($this);
+        if (!$this->articles->contains($article)) {
+            $this->articles[] = $article;
+            $article->setAuthor($this);
         }
 
         return $this;
     }
 
-    public function removeComment(Comment $comment): self
+    public function removeArticle(Article $article): self
     {
-        if ($this->comments->removeElement($comment)) {
+        if ($this->articles->removeElement($article)) {
             // set the owning side to null (unless already changed)
-            if ($comment->getAuthor() === $this) {
-                $comment->setAuthor(null);
+            if ($article->getAuthor() === $this) {
+                $article->setAuthor(null);
             }
         }
 
