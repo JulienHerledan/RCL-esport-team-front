@@ -2,15 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\CompetitionRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Repository\MatcheRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=CompetitionRepository::class)
+ * @ORM\Entity(repositoryClass=MatcheRepository::class)
  */
-class Competition
+class Matche
 {
     /**
      * @ORM\Id
@@ -20,14 +18,19 @@ class Competition
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=64)
+     * @ORM\Column(type="string", length=32)
      */
-    private $name;
+    private $opponent;
 
     /**
      * @ORM\Column(type="date")
      */
     private $date;
+
+    /**
+     * @ORM\Column(type="string", length=16, nullable=true)
+     */
+    private $score;
 
     /**
      * @ORM\Column(type="datetime_immutable")
@@ -40,28 +43,24 @@ class Competition
     private $updatedAt;
 
     /**
-     * @ORM\OneToMany(targetEntity=Matche::class, mappedBy="competition")
+     * @ORM\ManyToOne(targetEntity=Competition::class, inversedBy="matches")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $matches;
-
-    public function __construct()
-    {
-        $this->matches = new ArrayCollection();
-    }
+    private $competition;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getOpponent(): ?string
     {
-        return $this->name;
+        return $this->opponent;
     }
 
-    public function setName(string $name): self
+    public function setOpponent(string $opponent): self
     {
-        $this->name = $name;
+        $this->opponent = $opponent;
 
         return $this;
     }
@@ -74,6 +73,18 @@ class Competition
     public function setDate(\DateTimeInterface $date): self
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    public function getScore(): ?string
+    {
+        return $this->score;
+    }
+
+    public function setScore(?string $score): self
+    {
+        $this->score = $score;
 
         return $this;
     }
@@ -102,32 +113,14 @@ class Competition
         return $this;
     }
 
-    /**
-     * @return Collection<int, Matche>
-     */
-    public function getMatches(): Collection
+    public function getCompetition(): ?Competition
     {
-        return $this->matches;
+        return $this->competition;
     }
 
-    public function addMatch(Matche $match): self
+    public function setCompetition(?Competition $competition): self
     {
-        if (!$this->matches->contains($match)) {
-            $this->matches[] = $match;
-            $match->setCompetition($this);
-        }
-
-        return $this;
-    }
-
-    public function removeMatch(Matche $match): self
-    {
-        if ($this->matches->removeElement($match)) {
-            // set the owning side to null (unless already changed)
-            if ($match->getCompetition() === $this) {
-                $match->setCompetition(null);
-            }
-        }
+        $this->competition = $competition;
 
         return $this;
     }
