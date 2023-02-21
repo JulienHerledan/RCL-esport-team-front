@@ -15,8 +15,6 @@ class ArticleController extends AbstractController
    */
   public function getAll(ArticleRepository $articleRepository): JsonResponse
   {
-    $articles = $articleRepository->findAll();
-
-    return $this->json($articles, Response::HTTP_OK, [], ["groups" => "article"]);
+    return $this->json($articleRepository->findAll(), Response::HTTP_OK, [], ["groups" => "article"]);
   }
 }
