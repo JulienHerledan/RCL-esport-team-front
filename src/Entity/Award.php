@@ -67,8 +67,8 @@ class Award
 
     public function addMember(Member $member): self
     {
-        if (!$this->member->contains($member)) {
-            $this->member[] = $member;
+        if (!$this->members->contains($member)) {
+            $this->members[] = $member;
         }
 
         return $this;
@@ -76,7 +76,7 @@ class Award
 
     public function removeMember(Member $member): self
     {
-        $this->member->removeElement($member);
+        $this->members->removeElement($member);
 
         return $this;
     }
