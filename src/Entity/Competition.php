@@ -6,6 +6,7 @@ use App\Repository\CompetitionRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=CompetitionRepository::class)
@@ -21,11 +22,13 @@ class Competition
 
     /**
      * @ORM\Column(type="string", length=64)
+     * @Groups({"matches"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="date")
+     * @Groups({"matches"})
      */
     private $date;
 
