@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\MatcheRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=MatcheRepository::class)
@@ -19,32 +20,38 @@ class Matche
 
     /**
      * @ORM\Column(type="string", length=32)
+     * @Groups({"matches"})
      */
     private $opponent;
 
     /**
      * @ORM\Column(type="date")
+     * @Groups({"matches"})
      */
     private $date;
 
     /**
      * @ORM\Column(type="string", length=16, nullable=true)
+     * @Groups({"matches"})
      */
     private $score;
 
     /**
      * @ORM\Column(type="datetime_immutable")
+     * @Groups({"matches"})
      */
     private $createdAt;
 
     /**
      * @ORM\Column(type="datetime_immutable", nullable=true)
+     * @Groups({"matches"})
      */
     private $updatedAt;
 
     /**
      * @ORM\ManyToOne(targetEntity=Competition::class, inversedBy="matches")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"matches"})
      */
     private $competition;
 
