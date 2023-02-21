@@ -33,6 +33,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
    */
   private $roles = [];
 
+
   /**
    * @var string The hashed password
    * @ORM\Column(type="string")
@@ -47,6 +48,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
   /**
    * @ORM\Column(type="string", length=16)
    * @Groups({"article"})
+   * @Groups({"member"})
    */
   private $username;
 

@@ -6,7 +6,7 @@ use App\Repository\MemberRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Serializer\Annotation\Groups;
 /**
  * @ORM\Entity(repositoryClass=MemberRepository::class)
  */
@@ -21,72 +21,86 @@ class Member
 
     /**
      * @ORM\Column(type="string", length=64)
+     * @Groups({"member"})
      */
     private $username;
 
     /**
      * @ORM\Column(type="string", length=64)
+     * @Groups({"member"})
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=64)
+     * @Groups({"member"})
      */
     private $lastname;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"member"})
      */
     private $photo;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups({"member"})
      */
     private $age;
 
     /**
      * @ORM\Column(type="text")
+     * @Groups({"member"})
      */
     private $biography;
     
     /**
      * @ORM\ManyToMany(targetEntity=VideoClip::class, inversedBy="members")
+     * @Groups({"member"})
      */
     private $videoClips;
 
     /**
      * @ORM\ManyToMany(targetEntity=Game::class, inversedBy="members")
+     * @Groups({"member"})
      */
     private $games;
 
     /**
      * @ORM\Column(type="date")
+     * @Groups({"member"})
      */
     private $birthday;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="members")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"member"})
      */
     private $createdBy;
 
     /**
      * @ORM\Column(type="datetime_immutable")
+     * @Groups({"member"})
      */
     private $createdAt;
 
     /**
      * @ORM\Column(type="datetime_immutable", nullable=true)
+     * @Groups({"member"})
      */
     private $updatedAt;
 
     /**
      * @ORM\ManyToMany(targetEntity=Award::class, mappedBy="member")
+     * @Groups({"member"})
      */
     private $awards;
 
     /**
      * @ORM\OneToMany(targetEntity=SocialNetworkLink::class, mappedBy="member", orphanRemoval=true)
+     * @Groups({"member"})
      */
     private $socialNetworkLinks;
 
