@@ -48,12 +48,7 @@ class Member
      * @ORM\Column(type="text")
      */
     private $biography;
-
-    /**
-     * @ORM\OneToMany(targetEntity=SocialNetwork::class, mappedBy="member", orphanRemoval=true)
-     */
-    private $socialNetworks;
-
+    
     /**
      * @ORM\ManyToMany(targetEntity=VideoClip::class, inversedBy="members")
      */
@@ -90,12 +85,18 @@ class Member
      */
     private $awards;
 
+    /**
+     * @ORM\OneToMany(targetEntity=SocialNetworkLink::class, mappedBy="member", orphanRemoval=true)
+     */
+    private $socialNetworkLinks;
+
     public function __construct()
     {
-        $this->socialNetworks = new ArrayCollection();
+        
         $this->videoClips = new ArrayCollection();
         $this->games = new ArrayCollection();
         $this->awards = new ArrayCollection();
+        $this->socialNetworkLinks = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -174,37 +175,7 @@ class Member
 
         return $this;
     }
-
-    /**
-     * @return Collection<int, SocialNetwork>
-     */
-    public function getSocialNetworks(): Collection
-    {
-        return $this->socialNetworks;
-    }
-
-    public function addSocialNetwork(SocialNetwork $socialNetwork): self
-    {
-        if (!$this->socialNetworks->contains($socialNetwork)) {
-            $this->socialNetworks[] = $socialNetwork;
-            $socialNetwork->setMember($this);
-        }
-
-        return $this;
-    }
-
-    public function removeSocialNetwork(SocialNetwork $socialNetwork): self
-    {
-        if ($this->socialNetworks->removeElement($socialNetwork)) {
-            // set the owning side to null (unless already changed)
-            if ($socialNetwork->getMember() === $this) {
-                $socialNetwork->setMember(null);
-            }
-        }
-
-        return $this;
-    }
-
+    
     /**
      * @return Collection<int, VideoClip>
      */
@@ -323,6 +294,36 @@ class Member
     {
         if ($this->awards->removeElement($award)) {
             $award->removeMember($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, SocialNetworkLink>
+     */
+    public function getSocialNetworkLinks(): Collection
+    {
+        return $this->socialNetworkLinks;
+    }
+
+    public function addSocialNetworkLink(SocialNetworkLink $socialNetworkLink): self
+    {
+        if (!$this->socialNetworkLinks->contains($socialNetworkLink)) {
+            $this->socialNetworkLinks[] = $socialNetworkLink;
+            $socialNetworkLink->setMember($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSocialNetworkLink(SocialNetworkLink $socialNetworkLink): self
+    {
+        if ($this->socialNetworkLinks->removeElement($socialNetworkLink)) {
+            // set the owning side to null (unless already changed)
+            if ($socialNetworkLink->getMember() === $this) {
+                $socialNetworkLink->setMember(null);
+            }
         }
 
         return $this;

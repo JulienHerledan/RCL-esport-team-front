@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\SocialNetworkRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -38,10 +40,16 @@ class SocialNetwork
     private $updatedAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Member::class, inversedBy="socialNetworks")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\OneToMany(targetEntity=SocialNetworkLink::class, mappedBy="socialNetwork", orphanRemoval=true)
      */
-    private $member;
+    private $socialNetworkLinks;
+
+    public function __construct()
+    {
+        $this->socialNetworkLinks = new ArrayCollection();
+    }
+
+
 
     public function getId(): ?int
     {
@@ -96,15 +104,34 @@ class SocialNetwork
         return $this;
     }
 
-    public function getMember(): ?Member
+    /**
+     * @return Collection<int, SocialNetworkLink>
+     */
+    public function getSocialNetworkLinks(): Collection
     {
-        return $this->member;
+        return $this->socialNetworkLinks;
     }
 
-    public function setMember(?Member $member): self
+    public function addSocialNetworkLink(SocialNetworkLink $socialNetworkLink): self
     {
-        $this->member = $member;
+        if (!$this->socialNetworkLinks->contains($socialNetworkLink)) {
+            $this->socialNetworkLinks[] = $socialNetworkLink;
+            $socialNetworkLink->setSocialNetwork($this);
+        }
 
         return $this;
     }
+
+    public function removeSocialNetworkLink(SocialNetworkLink $socialNetworkLink): self
+    {
+        if ($this->socialNetworkLinks->removeElement($socialNetworkLink)) {
+            // set the owning side to null (unless already changed)
+            if ($socialNetworkLink->getSocialNetwork() === $this) {
+                $socialNetworkLink->setSocialNetwork(null);
+            }
+        }
+
+        return $this;
+    }
+
 }
