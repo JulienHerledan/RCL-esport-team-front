@@ -6,6 +6,7 @@ use App\Repository\ArticleRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=ArticleRepository::class)
@@ -16,47 +17,56 @@ class Article
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"article"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=64)
+     * @Groups({"article"})
      */
     private $title;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"article"})
      */
     private $thumbnail;
 
     /**
      * @ORM\Column(type="text")
+     * @Groups({"article"})
      */
     private $resume;
 
     /**
      * @ORM\Column(type="text")
+     * @Groups({"article"})
      */
     private $content;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="articles")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"article"})
      */
     private $author;
 
     /**
      * @ORM\Column(type="datetime_immutable")
+     * @Groups({"article"})
      */
     private $createdAt;
 
     /**
      * @ORM\Column(type="datetime_immutable", nullable=true)
+     * @Groups({"article"})
      */
     private $updatedAt;
 
     /**
      * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="article")
+     * @Groups({"article"})
      */
     private $comments;
 
