@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\SocialNetworkLinkRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=SocialNetworkLinkRepository::class)
@@ -19,6 +20,7 @@ class SocialNetworkLink
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"members"})
      */
     private $link;
 
@@ -31,6 +33,7 @@ class SocialNetworkLink
     /**
      * @ORM\ManyToOne(targetEntity=SocialNetwork::class, inversedBy="socialNetworkLinks")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"members"})
      */
     private $socialNetwork;
 

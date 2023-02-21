@@ -6,6 +6,7 @@ use App\Repository\AwardRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=AwardRepository::class)
@@ -21,6 +22,7 @@ class Award
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups({"members"})
      */
     private $rank;
 
@@ -32,6 +34,7 @@ class Award
     /**
      * @ORM\ManyToOne(targetEntity=Competition::class)
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"members"})
      */
     private $competition;
 

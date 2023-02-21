@@ -6,7 +6,7 @@ use App\Repository\MemberRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Serializer\Annotation\Groups;
 /**
  * @ORM\Entity(repositoryClass=MemberRepository::class)
  */
@@ -21,72 +21,86 @@ class Member
 
     /**
      * @ORM\Column(type="string", length=64)
+     * @Groups({"members"})
      */
     private $username;
 
     /**
      * @ORM\Column(type="string", length=64)
+     * @Groups({"members"})
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=64)
+     * @Groups({"members"})
      */
     private $lastname;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"members"})
      */
     private $photo;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups({"members"})
      */
     private $age;
 
     /**
      * @ORM\Column(type="text")
+     * @Groups({"members"})
      */
     private $biography;
     
     /**
-     * @ORM\ManyToMany(targetEntity=VideoClip::class, inversedBy="members")
+     * @ORM\ManyToMany(targetEntity=VideoClip::class, inversedBy="member")
+     * @Groups({"members"})
      */
     private $videoClips;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Game::class, inversedBy="members")
+     * @ORM\ManyToMany(targetEntity=Game::class, inversedBy="member")
+     * @Groups({"members"})
      */
     private $games;
 
     /**
      * @ORM\Column(type="date")
+     * @Groups({"members"})
      */
     private $birthday;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="members")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="member")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"members"})
      */
     private $createdBy;
 
     /**
      * @ORM\Column(type="datetime_immutable")
+     * @Groups({"members"})
      */
     private $createdAt;
 
     /**
      * @ORM\Column(type="datetime_immutable", nullable=true)
+     * @Groups({"members"})
      */
     private $updatedAt;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Award::class, mappedBy="member")
+     * @ORM\ManyToMany(targetEntity=Award::class, mappedBy="members")
+     * @Groups({"members"})
      */
     private $awards;
 
     /**
      * @ORM\OneToMany(targetEntity=SocialNetworkLink::class, mappedBy="member", orphanRemoval=true)
+     * @Groups({"members"})
      */
     private $socialNetworkLinks;
 

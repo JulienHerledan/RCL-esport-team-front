@@ -17,4 +17,5 @@ class ArticleController extends AbstractController
   {
     return $this->json($articleRepository->findAll(), Response::HTTP_OK, [], ["groups" => "article"]);
   }
+  
 }

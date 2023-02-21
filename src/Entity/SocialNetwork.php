@@ -6,6 +6,7 @@ use App\Repository\SocialNetworkRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=SocialNetworkRepository::class)
@@ -21,11 +22,13 @@ class SocialNetwork
 
     /**
      * @ORM\Column(type="string", length=64)
+     * @Groups({"members"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"members"})
      */
     private $image;
 
