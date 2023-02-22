@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class MatcheController extends AbstractController
 {
     /**
-     * @Route("/api/match", name="app_api_match_getAll", methods="GET")
+     * @Route("/api/matches", name="app_api_matches_getAll", methods="GET")
      */
     public function getAll(MatcheRepository $mr): JsonResponse
     {

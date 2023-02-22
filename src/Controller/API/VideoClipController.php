@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class VideoClipController extends AbstractController
 {
     /**
-     * @Route("/api/video-clip", name="app_api_video_clip_getAll", methods={"GET"})
+     * @Route("/api/video-clips", name="app_api_video_clips_getAll", methods={"GET"})
      */
     public function getAll(VideoClipRepository $videoClipRepository): JsonResponse
     {
