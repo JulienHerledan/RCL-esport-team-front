@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\CommentRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=CommentRepository::class)
@@ -19,25 +20,35 @@ class Comment
 
     /**
      * @ORM\Column(type="text")
+     * @Groups({"article"})
      */
     private $message;
 
     /**
      * @ORM\ManyToOne(targetEntity=user::class, inversedBy="comments")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"article"})
      */
     private $author;
 
     /**
      * @ORM\Column(type="datetime_immutable", nullable=true)
+     * @Groups({"article"})
      */
     private $updatedAt;
 
     /**
      * @ORM\ManyToOne(targetEntity=Article::class, inversedBy="comments")
      * @ORM\JoinColumn(nullable=false)
+     * 
      */
     private $article;
+
+    /**
+     * @ORM\Column(type="datetime_immutable")
+     * @Groups({"article"})
+     */
+    private $createdAt;
 
     public function getId(): ?int
     {
@@ -88,6 +99,18 @@ class Comment
     public function setArticle(?Article $article): self
     {
         $this->article = $article;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    {
+        $this->createdAt = $createdAt;
 
         return $this;
     }
