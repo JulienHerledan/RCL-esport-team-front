@@ -48,7 +48,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
   /**
    * @ORM\Column(type="string", length=16)
    * @Groups({"article", "members"})
-
    */
   private $username;
 
@@ -119,6 +118,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
   public function getUsername(): string
   {
     return $this->email;
+  }
+
+  public function getNickname(): string
+  {
+    return $this->username;
   }
 
   /**
