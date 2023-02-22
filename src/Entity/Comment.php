@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\CommentRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=CommentRepository::class)
@@ -19,12 +20,14 @@ class Comment
 
     /**
      * @ORM\Column(type="text")
+     * @Groups({"comments"})
      */
     private $message;
 
     /**
      * @ORM\ManyToOne(targetEntity=user::class, inversedBy="comments")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"comments"})
      */
     private $author;
 
@@ -41,6 +44,7 @@ class Comment
 
     /**
      * @ORM\Column(type="datetime_immutable")
+     * @Groups({"comments"})
      */
     private $createdAt;
 

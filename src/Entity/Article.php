@@ -17,13 +17,13 @@ class Article
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"article"})
+     * @Groups({"article","comments"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=64)
-     * @Groups({"article"})
+     * @Groups({"article","comments"})
      */
     private $title;
 
