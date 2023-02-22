@@ -27,7 +27,6 @@ class ArticleController extends AbstractController
      public function getOne(Article $article): JsonResponse
     {
 
-      //return $this->json($article->findOne(), Response::HTTP_OK,[],["groups" => "articles"]);
       
       return $this->json($article,Response::HTTP_OK,[],["groups" => "article"]);
     }
