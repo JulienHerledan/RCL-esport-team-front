@@ -23,11 +23,8 @@ class ArticleController extends AbstractController
     /**
      * @Route("/api/articles/{id}", name="app_api_article_getOneById", methods={"GET"}, requirements={"id"="\d+"})
      */
-    
      public function getOne(Article $article): JsonResponse
     {
-
-      
       return $this->json($article,Response::HTTP_OK,[],["groups" => "article"]);
     }
 }

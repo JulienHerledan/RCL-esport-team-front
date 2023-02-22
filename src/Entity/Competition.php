@@ -22,13 +22,14 @@ class Competition
 
     /**
      * @ORM\Column(type="string", length=64)
-     * @Groups({"matches"})
+     * @Groups({"matches", "members"})
+
      */
     private $name;
 
     /**
      * @ORM\Column(type="date")
-     * @Groups({"matches"})
+     * @Groups({"matches", "members"})
      */
     private $date;
 
