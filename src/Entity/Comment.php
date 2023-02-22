@@ -20,14 +20,14 @@ class Comment
 
     /**
      * @ORM\Column(type="text")
-     * @Groups({"article"})
+     * @Groups({"article", "comments"})
      */
     private $message;
 
     /**
      * @ORM\ManyToOne(targetEntity=user::class, inversedBy="comments")
      * @ORM\JoinColumn(nullable=false)
-     * @Groups({"article"})
+     * @Groups({"article", "comments"})
      */
     private $author;
 
@@ -40,13 +40,12 @@ class Comment
     /**
      * @ORM\ManyToOne(targetEntity=Article::class, inversedBy="comments")
      * @ORM\JoinColumn(nullable=false)
-     *
      */
     private $article;
 
     /**
      * @ORM\Column(type="datetime_immutable", options={"default": "CURRENT_TIMESTAMP"})
-     * @Groups({"article"})
+     * @Groups({"article", "comments"})
      */
     private $createdAt;
 
