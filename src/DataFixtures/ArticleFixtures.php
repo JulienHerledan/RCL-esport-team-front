@@ -16,7 +16,7 @@ class ArticleFixtures extends CoreFixture implements DependentFixtureInterface
     $users = $this->manager->getRepository(User::class)->findAll();
     $this->createMany(Article::class, 5, function (Article $article) use ($users) {
       $article
-        ->setTitle($this->faker->sentence())
+        ->setTitle($this->faker->text(30))
         ->setThumbnail($this->faker->getRandomImageLink(60, 60))
         ->setResume($this->faker->text(30))
         ->setContent($this->faker->text(500))
