@@ -4,23 +4,24 @@ namespace App\DataFixtures;
 
 use App\DataFixtures\Abstr\CoreFixture;
 use App\Entity\Article;
+use App\Entity\Comment;
 use App\Entity\User;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
-class ArticleFixtures extends CoreFixture implements DependentFixtureInterface
+class CommentFixtures extends CoreFixture implements DependentFixtureInterface
 {
 
   protected function loadFakeData(): void
   {
-
+    // I need bring all the users and all the articles
     $users = $this->manager->getRepository(User::class)->findAll();
-    $this->createMany(Article::class, 5, function (Article $article) use ($users) {
-      $article
-        ->setTitle($this->faker->text(30))
-        ->setThumbnail($this->faker->getRandomImageLink(60, 60))
-        ->setResume($this->faker->text(30))
-        ->setContent($this->faker->text(500))
+    $articles = $this->manager->getRepository(Article::class)->findAll();
+    
+    $this->createMany(Comment::class, 20, function (Comment $comment) use ($users, $articles) {
+      $comment
+        ->setMessage($this->faker->sentence())
         ->setAuthor($this->faker->randomElement($users))
+        ->setArticle($this->faker->randomElement($articles))
         ->setCreatedAt(\DateTimeImmutable::createFromMutable($this->faker->dateTime()));
     });
   }
@@ -29,6 +30,7 @@ class ArticleFixtures extends CoreFixture implements DependentFixtureInterface
   {
     return array(
       UserFixtures::class,
+      ArticleFixtures::class,
     );
   }
 }
