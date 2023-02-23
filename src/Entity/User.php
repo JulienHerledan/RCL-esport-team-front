@@ -61,7 +61,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
   /**
    * @ORM\Column(type="datetime_immutable")
-   * @Groups({"user"})
    */
   private $createdAt;
 
@@ -119,11 +118,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
    * @deprecated since Symfony 5.3, use getUserIdentifier instead
    */
   public function getUsername(): string
-  {
-    return $this->email;
-  }
-
-  public function getNickname(): string
   {
     return $this->username;
   }
