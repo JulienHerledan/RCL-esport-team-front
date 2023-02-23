@@ -53,7 +53,7 @@ class Article
     private $author;
 
     /**
-     * @ORM\Column(type="datetime_immutable")
+     * @ORM\Column(type="datetime_immutable", options={"default": "CURRENT_TIMESTAMP"})
      * @Groups({"article"})
      */
     private $createdAt;

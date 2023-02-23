@@ -27,7 +27,7 @@ class Apply
      */
     private $email;
 
-    /** 
+    /**
      * @ORM\Column(type="string", length=10)
      */
     private $phoneNumber;
@@ -43,7 +43,7 @@ class Apply
     private $isAccepted;
 
     /**
-     * @ORM\Column(type="datetime_immutable")
+     * @ORM\Column(type="datetime_immutable", options={"default": "CURRENT_TIMESTAMP"})
      */
     private $createdAt;
 

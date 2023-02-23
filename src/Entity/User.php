@@ -29,7 +29,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
   private $email;
 
   /**
-   * @ORM\Column(type="json")
+   * @ORM\Column(type="json", options={"default": "['ROLE_USER']"})
    */
   private $roles = [];
 
@@ -58,7 +58,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
   private $isActive;
 
   /**
-   * @ORM\Column(type="datetime_immutable")
+   * @ORM\Column(type="datetime_immutable", options={"default": "CURRENT_TIMESTAMP"})
    */
   private $createdAt;
 

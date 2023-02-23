@@ -40,12 +40,12 @@ class Comment
     /**
      * @ORM\ManyToOne(targetEntity=Article::class, inversedBy="comments")
      * @ORM\JoinColumn(nullable=false)
-     * 
+     *
      */
     private $article;
 
     /**
-     * @ORM\Column(type="datetime_immutable")
+     * @ORM\Column(type="datetime_immutable", options={"default": "CURRENT_TIMESTAMP"})
      * @Groups({"article"})
      */
     private $createdAt;

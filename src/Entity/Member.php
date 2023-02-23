@@ -54,7 +54,7 @@ class Member
      * @Groups({"members"})
      */
     private $biography;
-    
+
     /**
      * @ORM\ManyToMany(targetEntity=VideoClip::class, inversedBy="member")
      * @Groups({"members"})
@@ -81,7 +81,7 @@ class Member
     private $createdBy;
 
     /**
-     * @ORM\Column(type="datetime_immutable")
+     * @ORM\Column(type="datetime_immutable", options={"default": "CURRENT_TIMESTAMP"})
      * @Groups({"members"})
      */
     private $createdAt;
@@ -106,7 +106,7 @@ class Member
 
     public function __construct()
     {
-        
+
         $this->videoClips = new ArrayCollection();
         $this->games = new ArrayCollection();
         $this->awards = new ArrayCollection();
@@ -189,7 +189,7 @@ class Member
 
         return $this;
     }
-    
+
     /**
      * @return Collection<int, VideoClip>
      */

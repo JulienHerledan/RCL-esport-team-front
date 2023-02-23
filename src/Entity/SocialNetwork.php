@@ -33,7 +33,7 @@ class SocialNetwork
     private $image;
 
     /**
-     * @ORM\Column(type="datetime_immutable")
+     * @ORM\Column(type="datetime_immutable", options={"default": "CURRENT_TIMESTAMP"})
      */
     private $createdAt;
 
@@ -96,7 +96,7 @@ class SocialNetwork
     }
 
     public function getUpdatedAt(): ?\DateTimeImmutable
-    {   
+    {
         return $this->updatedAt;
     }
 

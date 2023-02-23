@@ -37,7 +37,7 @@ class Matche
     private $score;
 
     /**
-     * @ORM\Column(type="datetime_immutable")
+     * @ORM\Column(type="datetime_immutable", options={"default": "CURRENT_TIMESTAMP"})
      * @Groups({"matches"})
      */
     private $createdAt;
