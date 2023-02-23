@@ -36,6 +36,10 @@ class Comment
      * @Groups({"article"})
      */
     private $updatedAt;
+  /**
+   * @ORM\Column(type="datetime_immutable", nullable=true)
+   */
+  private $updatedAt;
 
     /**
      * @ORM\ManyToOne(targetEntity=Article::class, inversedBy="comments")
