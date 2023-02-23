@@ -44,6 +44,8 @@ class UserController extends AbstractController
             $user->setIsActive(1);
             // i  set up the date dateImmutable
             $user->setCreatedAt(new \DateTimeImmutable());
+            $user->setRoles(['ROLE_USER']);
+
             // dd($user);
             // I use the passwordHasher to hash my clean password
             $passwordHash = $this->passwordHasher->hashPassword($user, $user->getPassword());
