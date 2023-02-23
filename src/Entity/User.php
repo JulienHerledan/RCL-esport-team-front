@@ -30,7 +30,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
   private $email;
 
   /**
-   * @ORM\Column(type="json", options={"default": "['ROLE_USER']"})
+   * @ORM\Column(type="json")
    */
   private $roles = [];
 
@@ -48,8 +48,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
   /**
    * @ORM\Column(type="string", length=16)
-   * @Groups({"article", "members"})
-
+   * @Groups({"article", "members", "users"})
    */
   private $username;
 
@@ -61,6 +60,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
   /**
    * @ORM\Column(type="datetime_immutable")
+   * @Groups({"user"})
    */
   private $createdAt;
 
@@ -118,6 +118,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
    * @deprecated since Symfony 5.3, use getUserIdentifier instead
    */
   public function getUsername(): string
+  {
+    return $this->email;
+  }
+
+  public function getNickname(): string
   {
     return $this->username;
   }
