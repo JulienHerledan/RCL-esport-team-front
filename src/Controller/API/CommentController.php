@@ -23,41 +23,32 @@ class CommentController extends AbstractController
    */
   public function create(Request $request, SerializerInterface $serializer, ValidatorInterface $validator, CommentRepository $commentRepository): Response
   {
-
-    // Je recupère le json dans la requete
+    // Get json content from the request
     $json = $request->getContent();
 
-    // Si on peut sérializer avec $this->json, il est possible également d'importer le serializer et de faire la démarche en sens inverse et transformer un json en objet
-    // Pensez à composer require symfony/serializer-pack
+    // Deserialize our object
     try {
-      // si le code ne lance pas d'expection nous n'allons pas dans le catch (json valide)
       $comment = $serializer->deserialize($json, Comment::class, 'json');
-
     } catch (NotEncodableValueException $e) {
-
       return $this->json(["error" => "Json non valide"], Response::HTTP_BAD_REQUEST);
     }
 
-
-    // J'utilise le composant validator pour vérifier si les champs sont bien remplis
-    // Si l'objet est incomplet, j'aurai une erreur sql en faisant le add
+    // Check errors in values
     $errors = $validator->validate($comment);
 
-    // Je boucle sur le tableau d'erreur
-    // cette condition correspond à si il y a une erreur
     if (count($errors) > 0) {
-      // Je créer un tableau avec mes erreurs
       $errorsArray = [];
       foreach ($errors as $error) {
-        // A l'index qui correspond au champs mal remplis, j'y injecte le/les messages d'erreurs
         $errorsArray[$error->getPropertyPath()][] = $error->getMessage();
       }
       return $this->json($errorsArray, Response::HTTP_UNPROCESSABLE_ENTITY);
     }
 
+    // Save object in database
     $commentRepository->add($comment, true);
 
-    // Renvoi un json avec en premier argument les données et en deuxième un status code
+    // Return the object created
+    // Don't return the location because we don't need a route to get one comment
     return $this->json($comment, Response::HTTP_CREATED, [], ["groups" => "comments"]);
   }
 }
