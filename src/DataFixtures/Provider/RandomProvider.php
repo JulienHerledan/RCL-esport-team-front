@@ -12,7 +12,7 @@ class RandomProvider extends Base
 
   public function getRandomImageLink(int $width, int $height): string
   {
-    return "https://picsum.photos/" . self::randomNumber(3) . "/" . $width . "/" . $height;
+    return "https://picsum.photos/id/" . self::randomNumber(3) . "/" . $width . "/" . $height;
   }
 
   public function getRandomScore(): string
