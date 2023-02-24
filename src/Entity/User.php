@@ -46,11 +46,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
    */
   private $articles;
 
-  /**
-   * @ORM\Column(type="string", length=16)
-   * @Groups({"article", "members", "users"})
-   */
-  private $username;
 
   /**
    * @ORM\Column(type="boolean")
@@ -122,10 +117,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     return $this->email;
   }
 
-  public function getNickname(): string
-  {
-    return $this->username;
-  }
 
   /**
    * @see UserInterface
@@ -211,12 +202,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     return $this;
   }
 
-  public function setUsername(string $username): self
-  {
-    $this->username = $username;
-
-    return $this;
-  }
 
   public function isIsActive(): ?bool
   {
