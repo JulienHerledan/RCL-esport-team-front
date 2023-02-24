@@ -27,11 +27,6 @@ class Article
    */
   private $title;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     * @Groups({"article"})
-     */
-    private $thumbnail;
 
     /**
      * @ORM\Column(type="text")
@@ -92,17 +87,6 @@ class Article
         return $this;
     }
 
-    public function getThumbnail(): ?string
-    {
-        return $this->thumbnail;
-    }
-
-    public function setThumbnail(string $thumbnail): self
-    {
-        $this->thumbnail = $thumbnail;
-
-        return $this;
-    }
 
     public function getResume(): ?string
     {
