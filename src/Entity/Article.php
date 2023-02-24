@@ -27,11 +27,6 @@ class Article
    */
   private $title;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     * @Groups({"article"})
-     */
-    private $thumbnail;
 
     /**
      * @ORM\Column(type="text")
@@ -70,6 +65,11 @@ class Article
      */
     private $comments;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $image;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
@@ -92,17 +92,6 @@ class Article
         return $this;
     }
 
-    public function getThumbnail(): ?string
-    {
-        return $this->thumbnail;
-    }
-
-    public function setThumbnail(string $thumbnail): self
-    {
-        $this->thumbnail = $thumbnail;
-
-        return $this;
-    }
 
     public function getResume(): ?string
     {
@@ -190,6 +179,18 @@ class Article
                 $comment->setArticle(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }

@@ -36,7 +36,6 @@ class Comment
    * @Groups({"article"})
    */
   private $updatedAt;
- 
 
   /**
    * @ORM\ManyToOne(targetEntity=Article::class, inversedBy="comments")
