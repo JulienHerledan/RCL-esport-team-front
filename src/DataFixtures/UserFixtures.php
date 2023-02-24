@@ -27,7 +27,7 @@ class UserFixtures extends CoreFixture
       $user = new User();
 
       $user->setEmail($userData['email']);
-      // $user->setUsername($username);
+      $user->setNickname($username);
       $user->setRoles($userData['roles']);
       $user->setPassword($this->passwordHasher->hashPassword($user, $userData['password']));
       $user->setIsActive(true);

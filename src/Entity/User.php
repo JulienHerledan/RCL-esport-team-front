@@ -74,6 +74,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
    */
   private $applies;
 
+  /**
+   * @ORM\Column(type="string", length=16)
+   * @Groups({"article", "members", "users"})
+   */
+  private $nickname;
+
   public function __construct()
   {
     $this->articles = new ArrayCollection();
@@ -297,5 +303,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     return $this;
+  }
+
+  public function getNickname(): ?string
+  {
+      return $this->nickname;
+  }
+
+  public function setNickname(string $nickname): self
+  {
+      $this->nickname = $nickname;
+
+      return $this;
   }
 }
