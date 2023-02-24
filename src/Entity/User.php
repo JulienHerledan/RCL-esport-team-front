@@ -49,7 +49,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
   /**
    * @ORM\Column(type="boolean")
-   * @Groups({"article"})
+   * @Groups({"articles"})
    */
   private $isActive;
 
@@ -75,7 +75,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
   /**
    * @ORM\Column(type="string", length=16)
-   * @Groups({"article", "members", "users", "comments"})
+   * @Groups({"articles", "members", "users", "comments"})
    */
   private $nickname;
 
