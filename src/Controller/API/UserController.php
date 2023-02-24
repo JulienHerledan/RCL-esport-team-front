@@ -15,7 +15,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class UserController extends AbstractController
 {
-    
+
     private $passwordHasher;
     private $userRepository;
 
@@ -32,7 +32,6 @@ class UserController extends AbstractController
     public function checkToken(): Response
     {
         return $this->json(["message" => "JWT Token still valid"], Response::HTTP_OK);
-
     }
 
     /**
@@ -45,11 +44,11 @@ class UserController extends AbstractController
         $json = $request->getContent();
         // dd($json);
 
-        // deserialize the json 
+        // deserialize the json
         try{
             //if the json is valide we don't go to the catch
             $user = $serializer->deserialize($json, User::class, 'json');
-            
+
             // I set the user to an ActiveUser
             $user->setIsActive(1);
             // i  set up the date dateImmutable
@@ -68,7 +67,7 @@ class UserController extends AbstractController
             return $this->json(["erreur" => "json non valide"], Response::HTTP_BAD_REQUEST);
         }
 
-        // I use validator composant to verify all the required 
+        // I use validator composant to verify all the required
         $errors = $validator->validate($user);
 
         // Manage error
@@ -81,7 +80,7 @@ class UserController extends AbstractController
         }
         // ad user to the database
         $this->userRepository->add($user,true);
-        
+
 
         return $this->json($user,Response::HTTP_CREATED,[],["groups" =>"users"]);
     }
