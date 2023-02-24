@@ -26,6 +26,16 @@ class UserController extends AbstractController
     }
 
     /**
+     * Check token
+     * @Route("/api/users/check", name="app_api_user_check", methods={"GET"})
+     */
+    public function checkToken(): Response
+    {
+        return $this->json(["message" => "JWT Token still valid"], Response::HTTP_OK);
+
+    }
+
+    /**
      * Create User
      * @Route("/api/users", name="app_api_user_create", methods={"POST"})
      */
