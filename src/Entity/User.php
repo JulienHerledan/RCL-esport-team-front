@@ -46,12 +46,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
    */
   private $articles;
 
-  /**
-   * @ORM\Column(type="string", length=16)
-   * @Groups({"article", "members", "comments", "users"})
-
-   */
-  private $username;
 
   /**
    * @ORM\Column(type="boolean")
@@ -78,6 +72,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
    * @ORM\OneToMany(targetEntity=Apply::class, mappedBy="acceptedBy")
    */
   private $applies;
+
+  /**
+   * @ORM\Column(type="string", length=16)
+   * @Groups({"article", "members", "users"})
+   */
+  private $nickname;
 
   public function __construct()
   {
@@ -119,8 +119,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
    */
   public function getUsername(): string
   {
-    return $this->username;
+    return $this->email;
   }
+
 
   /**
    * @see UserInterface
@@ -206,12 +207,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     return $this;
   }
 
-  public function setUsername(string $username): self
-  {
-    $this->username = $username;
-
-    return $this;
-  }
 
   public function isIsActive(): ?bool
   {
@@ -307,5 +302,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     return $this;
+  }
+
+  public function getNickname(): ?string
+  {
+      return $this->nickname;
+  }
+
+  public function setNickname(string $nickname): self
+  {
+      $this->nickname = $nickname;
+
+      return $this;
   }
 }
