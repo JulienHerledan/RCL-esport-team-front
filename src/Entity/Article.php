@@ -13,19 +13,19 @@ use Symfony\Component\Serializer\Annotation\Groups;
  */
 class Article
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     * @Groups({"article"})
-     */
-    private $id;
+  /**
+   * @ORM\Id
+   * @ORM\GeneratedValue
+   * @ORM\Column(type="integer")
+   * @Groups({"article","comments"})
+   */
+  private $id;
 
-    /**
-     * @ORM\Column(type="string", length=64)
-     * @Groups({"article"})
-     */
-    private $title;
+  /**
+   * @ORM\Column(type="string", length=64)
+   * @Groups({"article","comments"})
+   */
+  private $title;
 
     /**
      * @ORM\Column(type="string", length=255)
