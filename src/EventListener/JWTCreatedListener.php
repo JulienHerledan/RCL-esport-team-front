@@ -20,7 +20,6 @@ class JWTCreatedListener
     }
 
     $data['data'] = array(
-      'id' => $user->getId(),
       'email' => $user->getEmail(),
       'nickname' => $user->getNickname(),
     );
