@@ -18,8 +18,8 @@ class ArticleFixtures extends CoreFixture implements DependentFixtureInterface
       $article
         ->setTitle($this->faker->text(30))
         ->setImage($this->faker->getRandomImageLink(1024, 546))
-        ->setResume($this->faker->text(30))
-        ->setContent($this->faker->text(500))
+        ->setResume($this->faker->text(300))
+        ->setContent($this->faker->text(800))
         ->setAuthor($this->faker->randomElement($users))
         ->setCreatedAt(\DateTimeImmutable::createFromMutable($this->faker->dateTime()));
     });
