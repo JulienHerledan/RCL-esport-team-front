@@ -17,7 +17,7 @@ class ArticleFixtures extends CoreFixture implements DependentFixtureInterface
     $this->createMany(Article::class, 5, function (Article $article) use ($users) {
       $article
         ->setTitle($this->faker->text(30))
-        ->setThumbnail($this->faker->getRandomImageLink(60, 60))
+        ->setImage($this->faker->getRandomImageLink(1024, 546))
         ->setResume($this->faker->text(30))
         ->setContent($this->faker->text(500))
         ->setAuthor($this->faker->randomElement($users))
