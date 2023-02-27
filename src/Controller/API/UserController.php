@@ -84,4 +84,16 @@ class UserController extends AbstractController
 
         return $this->json($user,Response::HTTP_CREATED,[],["groups" =>"users"]);
     }
+
+    /**
+     * getOne User
+     * @Route("/api/users/{id}", name="app_api_user_getOne", methods={"GET"})
+     */
+    public function getOne(User $user): Response
+    {
+
+        return $this->json($user,Response::HTTP_OK,[],["groups" =>"users"]);
+
+    }
+
 }
