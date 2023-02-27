@@ -16,7 +16,7 @@ class ArticleController extends AbstractController
    */
     public function getAll(ArticleRepository $articleRepository): JsonResponse
     {
-      return $this->json($articleRepository->findAll(), Response::HTTP_OK, [], ["groups" => "article"]);
+      return $this->json($articleRepository->findAll(), Response::HTTP_OK, [], ["groups" => "articles"]);
     }
 
 
@@ -25,7 +25,7 @@ class ArticleController extends AbstractController
      */
      public function getOne(Article $article): JsonResponse
     {
-      return $this->json($article,Response::HTTP_OK,[],["groups" => "article"]);
+      return $this->json($article,Response::HTTP_OK,[],["groups" => "articles"]);
     }
 }
 
