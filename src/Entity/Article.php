@@ -10,6 +10,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=ArticleRepository::class)
+ * @ORM\HasLifecycleCallbacks
  */
 class Article
 {
@@ -69,6 +70,12 @@ class Article
      * @ORM\Column(type="string", length=255)
      */
     private $image;
+
+    /**
+     * @ORM\Column(type="string", length=64)
+     * @Groups({"articles","comments"})
+     */
+    private $slug;
 
     public function __construct()
     {
@@ -191,6 +198,18 @@ class Article
     public function setImage(string $image): self
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }

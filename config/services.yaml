@@ -27,6 +27,8 @@ services:
     autowire: true
     autoconfigure: true
     tags: [ serializer.normalizer ]
+
+  ## >>>------- Listeners
   App\EventListener\EntityPersistListener:
     tags:
       - { name: doctrine.event_listener, event: prePersist }
@@ -34,3 +36,10 @@ services:
     arguments: [ '@request_stack' ]
     tags:
       - { name: kernel.event_listener, event: lexik_jwt_authentication.on_authentication_success, method: onAuthenticationSuccessResponse }
+  ## <<<------- Listeners
+
+  ## >>>------- Subscribers
+  App\EventSubscriber\ArticleSlugSubscriber:
+    tags:
+      - { name: doctrine.event_subscriber }
+  ## <<<------- Subscribers
