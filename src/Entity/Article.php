@@ -73,6 +73,7 @@ class Article
 
     /**
      * @ORM\Column(type="string", length=64)
+     * @Groups({"articles","comments"})
      */
     private $slug;
 
