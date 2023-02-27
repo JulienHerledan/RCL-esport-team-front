@@ -55,13 +55,11 @@ class UserController extends AbstractController
             $user->setCreatedAt(new \DateTimeImmutable());
             $user->setRoles(['ROLE_USER']);
 
-            // dd($user);
             // I use the passwordHasher to hash my clean password
             $passwordHash = $this->passwordHasher->hashPassword($user, $user->getPassword());
 
             // I set the user's password with the passwordHash
             $user->setPassword($passwordHash);
-            // dd($user);
 
         }catch(NotEncodableValueException $e){
             return $this->json(["erreur" => "json non valide"], Response::HTTP_BAD_REQUEST);
@@ -105,47 +103,37 @@ class UserController extends AbstractController
      */
     public function update(Request $request, SerializerInterface $serializer, ValidatorInterface $validator): Response
     {
+
         // I getback the content of the request
         $json = $request->getContent();
+        // dd($json);
+        // Faut le passer sous le format d'un tableau avec json_decode 
+        $jsonDecode = json_decode($json, true);
+        //  dd($jsonDecode['nickname']);
+        // Si tableau vide, on return avec un message d'erreur
+        // dd($request);
+        
+        /**
+         * @var User
+         */
+        $user=$this->getUser();
 
-
-        // deserialize the json
-        try{
-            //if the json is valide we don't go to the catch
-            $user = $serializer->deserialize($json, User::class, 'json');
-
-            // I set the user to an ActiveUser
-            $user->setIsActive(1);
-            // i  set up the date dateImmutable
-            $user->setCreatedAt(new \DateTimeImmutable());
-            $user->setRoles(['ROLE_USER']);
-
-            // dd($user);
-            // I use the passwordHasher to hash my clean password
-            $passwordHash = $this->passwordHasher->hashPassword($user, $user->getPassword());
-
-            // I set the user's password with the passwordHash
+        //  dd($user);
+        // Vérifier si les champs sont compris dans le tableau, s'ils sont dans le tableau, on modifie la valeur avec la valeur du tableau 
+        // genre si $data['email'] existe, alors on change la valeur de l'email de l'user avec la valeur $data['email']
+        if (isset($jsonDecode['email'])) {
+            $user->setEmail($jsonDecode['email']);
+        }
+        if (isset($jsonDecode['nickname'])) {
+            $user->setNickname($jsonDecode['nickname']);
+        }
+        if (isset($jsonDecode["password"])) {
+            $passwordHash= $this->passwordHasher->hashPassword($user, $jsonDecode["password"]);
+            // dd($passwordHash);
             $user->setPassword($passwordHash);
-            // dd($user);
-
-        }catch(NotEncodableValueException $e){
-            return $this->json(["erreur" => "json non valide"], Response::HTTP_BAD_REQUEST);
         }
-
-        // I use validator composant to verify all the required
-        $errors = $validator->validate($user);
-
-        // Manage error
-        if(count($errors) > 0){
-            $errorsArray = [];
-            foreach($errors as $error){
-                $errorsArray[$error->getPropertyPath()][] = $error->getMessage();
-            }
-            return $this->json($errorsArray,Response::HTTP_UNPROCESSABLE_ENTITY);
-        }
-        // ad user to the database
+        
         $this->userRepository->add($user,true);
-
 
         return $this->json($user,Response::HTTP_CREATED,[],["groups" =>"users"]);
     }
