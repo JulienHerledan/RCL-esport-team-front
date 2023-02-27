@@ -17,6 +17,7 @@ class MatcheFixtures extends CoreFixture implements DependentFixtureInterface
     $this->createMany(Matche::class, 5, function (Matche $matche) use ($competitions) {
       $matche
         ->setCompetition($this->faker->randomElement($competitions))
+        ->setOpponentIcon($this->faker->getRandomImageLink(30, 30))
         ->setOpponent($this->faker->getOpponentName())
         ->setDate($this->faker->dateTime())
         ->setScore($this->faker->getRandomScore())
