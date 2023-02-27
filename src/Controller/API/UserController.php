@@ -87,13 +87,15 @@ class UserController extends AbstractController
 
     /**
      * getOne User
-     * @Route("/api/users/{id}", name="app_api_user_getOne", methods={"GET"})
+     * @Route("/api/users", name="app_api_user_getOne", methods={"GET"})
      */
-    public function getOne(User $user): Response
+    public function getOne(): Response
     {
-
-        return $this->json($user,Response::HTTP_OK,[],["groups" =>"users"]);
-
+    $user=$this->getUser();
+    
+    if(!$user){
+        return $this->json(["erreur" => "Utilisateur inconnu"], Response::HTTP_NOT_FOUND);
     }
-
+    return $this->json($this->getUser(),Response::HTTP_OK,[],["groups" =>"users"]);
+    }
 }
