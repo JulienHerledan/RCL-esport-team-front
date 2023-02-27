@@ -17,51 +17,51 @@ class Article
    * @ORM\Id
    * @ORM\GeneratedValue
    * @ORM\Column(type="integer")
-   * @Groups({"article","comments"})
+   * @Groups({"articles","comments"})
    */
   private $id;
 
   /**
    * @ORM\Column(type="string", length=64)
-   * @Groups({"article","comments"})
+   * @Groups({"articles","comments"})
    */
   private $title;
 
 
     /**
      * @ORM\Column(type="text")
-     * @Groups({"article"})
+     * @Groups({"articles"})
      */
     private $resume;
 
     /**
      * @ORM\Column(type="text")
-     * @Groups({"article"})
+     * @Groups({"articles"})
      */
     private $content;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="articles")
      * @ORM\JoinColumn(nullable=false)
-     * @Groups({"article"})
+     * @Groups({"articles"})
      */
     private $author;
 
     /**
      * @ORM\Column(type="datetime_immutable", options={"default": "CURRENT_TIMESTAMP"})
-     * @Groups({"article"})
+     * @Groups({"articles"})
      */
     private $createdAt;
 
     /**
      * @ORM\Column(type="datetime_immutable", nullable=true)
-     * @Groups({"article"})
+     * @Groups({"articles"})
      */
     private $updatedAt;
 
     /**
      * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="article")
-     * @Groups({"article"})
+     * @Groups({"articles"})
      */
     private $comments;
 

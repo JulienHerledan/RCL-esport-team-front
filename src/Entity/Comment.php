@@ -20,20 +20,20 @@ class Comment
 
   /**
    * @ORM\Column(type="text")
-   * @Groups({"article", "comments"})
+   * @Groups({"articles", "comments"})
    */
   private $message;
 
   /**
    * @ORM\ManyToOne(targetEntity=User::class, inversedBy="comments")
    * @ORM\JoinColumn(nullable=false)
-   * @Groups({"article", "comments"})
+   * @Groups({"articles", "comments"})
    */
   private $author;
 
   /**
    * @ORM\Column(type="datetime_immutable", nullable=true)
-   * @Groups({"article"})
+   * @Groups({"articles"})
    */
   private $updatedAt;
 
@@ -45,7 +45,7 @@ class Comment
 
     /**
      * @ORM\Column(type="datetime_immutable", options={"default": "CURRENT_TIMESTAMP"})
-     * @Groups({"article", "comments"})
+     * @Groups({"articles", "comments"})
      */
     private $createdAt;
 
