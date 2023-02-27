@@ -55,6 +55,12 @@ class Matche
      */
     private $competition;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Groups({"matches"})
+     */
+    private $opponentIcon;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -128,6 +134,18 @@ class Matche
     public function setCompetition(?Competition $competition): self
     {
         $this->competition = $competition;
+
+        return $this;
+    }
+
+    public function getOpponentIcon(): ?string
+    {
+        return $this->opponentIcon;
+    }
+
+    public function setOpponentIcon(string $opponentIcon): self
+    {
+        $this->opponentIcon = $opponentIcon;
 
         return $this;
     }
