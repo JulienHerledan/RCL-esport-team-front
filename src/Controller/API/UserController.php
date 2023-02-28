@@ -55,13 +55,11 @@ class UserController extends AbstractController
             $user->setCreatedAt(new \DateTimeImmutable());
             $user->setRoles(['ROLE_USER']);
 
-            // dd($user);
             // I use the passwordHasher to hash my clean password
             $passwordHash = $this->passwordHasher->hashPassword($user, $user->getPassword());
 
             // I set the user's password with the passwordHash
             $user->setPassword($passwordHash);
-            // dd($user);
 
         }catch(NotEncodableValueException $e){
             return $this->json(["erreur" => "json non valide"], Response::HTTP_BAD_REQUEST);
@@ -81,6 +79,62 @@ class UserController extends AbstractController
         // ad user to the database
         $this->userRepository->add($user,true);
 
+
+        return $this->json($user,Response::HTTP_CREATED,[],["groups" =>"users"]);
+    }
+
+    /**
+     * getOne User
+     * @Route("/api/users", name="app_api_user_getOne", methods={"GET"})
+     */
+    public function getOne(): Response
+    {
+        $user = $this->getUser();
+
+        return $user ? 
+        $this->json($user,Response::HTTP_OK,[],["groups" =>"users"]) : 
+        $this->json(["erreur" => "Utilisateur inconnu"], Response::HTTP_NOT_FOUND);
+
+    }
+
+    /**
+     * update an User
+     * @Route("/api/users", name="app_api_user_update", methods={"PATCH"})
+     */
+    public function update(Request $request, ValidatorInterface $validator): Response
+    {
+
+        // I getback the content of the request
+        $json = $request->getContent();
+
+        // convert json to array with json_decode 
+        $jsonDecode = json_decode($json, true);
+
+        // i getback the user to use Setemail / setNickname and setPassword
+        /**
+         * @var User
+         */
+        $user=$this->getUser();
+
+        if(!isset($user)){
+            $this->json(["erreur" => "Erreur lors de la recupération de l'utilisateur"], Response::HTTP_BAD_REQUEST);
+        }
+
+        // check the modifcations of the user : mail, nickanme, password
+        if (isset($jsonDecode['email'])) {
+            $user->setEmail($jsonDecode['email']);
+        }
+        if (isset($jsonDecode['nickname'])) {
+            $user->setNickname($jsonDecode['nickname']);
+        }
+        if (isset($jsonDecode["password"])) {
+            // hash the clean password
+            $passwordHash= $this->passwordHasher->hashPassword($user, $jsonDecode["password"]);
+            $user->setPassword($passwordHash);
+        }
+        
+        // add and flush the user to the database
+        $this->userRepository->add($user,true);
 
         return $this->json($user,Response::HTTP_CREATED,[],["groups" =>"users"]);
     }
