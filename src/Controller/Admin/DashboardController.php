@@ -7,6 +7,7 @@ use App\Entity\Article;
 use App\Entity\Award;
 use App\Entity\Comment;
 use App\Entity\Competition;
+use App\Entity\Game;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -38,7 +39,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Comment', 'far fa-comments', Comment::class);
         yield MenuItem::linkToCrud('Apply', 'fas fa-id-card-alt', Apply::class);
         yield MenuItem::linkToDashboard('Member', 'fas fa-headset');
-        yield MenuItem::linkToDashboard('Game', 'fas fa-gamepad');
+        yield MenuItem::linkToCrud('Game', 'fas fa-gamepad', Game::class);
         yield MenuItem::linkToDashboard('SocialNetwork', 'fab fa-twitter-square');
         yield MenuItem::linkToDashboard('SocialNetwork link', 'fas fa-link');
         yield MenuItem::linkToDashboard('videoClip', 'fas fa-video');
