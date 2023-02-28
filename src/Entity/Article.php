@@ -67,6 +67,7 @@ class Article
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"articles"})
      */
     private $image;
 
