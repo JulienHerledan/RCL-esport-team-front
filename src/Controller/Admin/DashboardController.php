@@ -39,7 +39,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToDashboard('SocialNetwork', 'fab fa-twitter-square');
         yield MenuItem::linkToDashboard('SocialNetwork link', 'fas fa-link');
         yield MenuItem::linkToDashboard('videoClip', 'fas fa-video');
-        yield MenuItem::linkToDashboard('Award', 'fas fa-trophy');
+        yield MenuItem::linkToCrud('Award', 'fas fa-trophy', Award::class);
         yield MenuItem::linkToDashboard('Competition', 'fas fa-calendar-week');
         yield MenuItem::linkToDashboard('Matche', 'fas fa-sitemap');
 
