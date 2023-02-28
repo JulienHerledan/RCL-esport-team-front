@@ -26,15 +26,14 @@ class ApplyCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')->hideOnForm(),
-            TextField::new('name'),
-            EmailField::new('email'),
-            TelephoneField::new('phoneNumber'),
+            TextField::new('name')->hideOnForm(),
+            EmailField::new('email')->hideOnForm(),
+            TelephoneField::new('phoneNumber')->hideOnForm(),
             TextEditorField::new('presentation')->hideOnForm(),
             BooleanField::new('IsAccepted'),
             AssociationField::new('acceptedBy')->hideOnForm(),
             DateField::new('createdAt')->hideOnForm(),
             DateField::new('updatedAt')->hideOnForm(),
-
         ];
     }
     
