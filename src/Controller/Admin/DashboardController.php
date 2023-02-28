@@ -12,6 +12,7 @@ use App\Entity\Matche;
 use App\Entity\Member;
 use App\Entity\SocialNetwork;
 use App\Entity\SocialNetworkLink;
+use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -37,7 +38,7 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         
-        yield MenuItem::linkToDashboard('User', 'fas fa-users');
+        yield MenuItem::linkToCrud('User', 'fas fa-users', User::class);
 
         yield MenuItem::linkToCrud('Articles', 'far fa-newspaper', Article::class);
         yield MenuItem::linkToCrud('Comment', 'far fa-comments', Comment::class);
