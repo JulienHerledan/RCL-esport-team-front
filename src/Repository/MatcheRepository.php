@@ -11,33 +11,37 @@ use Doctrine\Persistence\ManagerRegistry;
  *
  * @method Matche|null find($id, $lockMode = null, $lockVersion = null)
  * @method Matche|null findOneBy(array $criteria, array $orderBy = null)
- * @method Matche[]    findAll()
  * @method Matche[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class MatcheRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
-    {
-        parent::__construct($registry, Matche::class);
+  public function __construct(ManagerRegistry $registry)
+  {
+    parent::__construct($registry, Matche::class);
+  }
+
+  public function add(Matche $entity, bool $flush = false): void
+  {
+    $this->getEntityManager()->persist($entity);
+
+    if ($flush) {
+      $this->getEntityManager()->flush();
     }
+  }
 
-    public function add(Matche $entity, bool $flush = false): void
-    {
-        $this->getEntityManager()->persist($entity);
+  public function remove(Matche $entity, bool $flush = false): void
+  {
+    $this->getEntityManager()->remove($entity);
 
-        if ($flush) {
-            $this->getEntityManager()->flush();
-        }
+    if ($flush) {
+      $this->getEntityManager()->flush();
     }
+  }
 
-    public function remove(Matche $entity, bool $flush = false): void
-    {
-        $this->getEntityManager()->remove($entity);
-
-        if ($flush) {
-            $this->getEntityManager()->flush();
-        }
-    }
+  public function findAll(): array
+  {
+    return $this->findBy(array(), array('createdAt' => 'DESC'));
+  }
 
 //    /**
 //     * @return Matche[] Returns an array of Matche objects
