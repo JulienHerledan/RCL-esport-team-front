@@ -3,6 +3,9 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Apply;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
@@ -12,7 +15,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TelephoneField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
-use EasyCorp\Bundle\EasyAdminBundle\Form\Type\TextEditorType;
+
 
 class ApplyCrudController extends AbstractCrudController
 {
@@ -29,12 +32,18 @@ class ApplyCrudController extends AbstractCrudController
             TextField::new('name')->hideOnForm(),
             EmailField::new('email')->hideOnForm(),
             TelephoneField::new('phoneNumber')->hideOnForm(),
-            TextEditorField::new('presentation')->hideOnForm(),
+            TextEditorField::new('presentation')->onlyOnDetail(),
             BooleanField::new('IsAccepted'),
             AssociationField::new('acceptedBy')->hideOnForm(),
             DateField::new('createdAt')->hideOnForm(),
             DateField::new('updatedAt')->hideOnForm(),
         ];
     }
+
     
+    public function configureActions(Actions $actions): Actions
+    {
+        return $actions
+         ->add(Crud::PAGE_INDEX, Action::DETAIL);
+    }
 }

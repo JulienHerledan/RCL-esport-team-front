@@ -4,6 +4,11 @@ namespace App\Controller\Admin;
 
 use App\Entity\VideoClip;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\UrlField;
 
 class VideoClipCrudController extends AbstractCrudController
 {
@@ -12,14 +17,16 @@ class VideoClipCrudController extends AbstractCrudController
         return VideoClip::class;
     }
 
-    /*
+    
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id'),
-            TextField::new('title'),
-            TextEditorField::new('description'),
+            IdField::new('id')->hideOnForm(),
+            UrlField::new('link'),
+            AssociationField::new('members'), 
+            DateField::new('createdAt'),
+            DateField::new('updatedAt'),
         ];
     }
-    */
+    
 }
