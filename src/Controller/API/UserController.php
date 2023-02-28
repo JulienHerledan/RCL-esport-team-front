@@ -89,7 +89,7 @@ class UserController extends AbstractController
      */
     public function getOne(): Response
     {
-        $user=$this->getUser();
+        $user = $this->getUser();
 
         return $user ? 
         $this->json($user,Response::HTTP_OK,[],["groups" =>"users"]) : 
@@ -101,26 +101,22 @@ class UserController extends AbstractController
      * update an User
      * @Route("/api/users", name="app_api_user_update", methods={"PATCH"})
      */
-    public function update(Request $request, SerializerInterface $serializer, ValidatorInterface $validator): Response
+    public function update(Request $request, ValidatorInterface $validator): Response
     {
 
         // I getback the content of the request
         $json = $request->getContent();
-        // dd($json);
-        // Faut le passer sous le format d'un tableau avec json_decode 
+
+        // convert json to array with json_decode 
         $jsonDecode = json_decode($json, true);
-        //  dd($jsonDecode['nickname']);
-        // Si tableau vide, on return avec un message d'erreur
-        // dd($request);
-        
+
+        // i getback the user to use Setemail / setNickname and setPassword
         /**
          * @var User
          */
         $user=$this->getUser();
 
-        //  dd($user);
-        // Vérifier si les champs sont compris dans le tableau, s'ils sont dans le tableau, on modifie la valeur avec la valeur du tableau 
-        // genre si $data['email'] existe, alors on change la valeur de l'email de l'user avec la valeur $data['email']
+        // check the modifcations of the user : mail, nickanme, password
         if (isset($jsonDecode['email'])) {
             $user->setEmail($jsonDecode['email']);
         }
@@ -128,13 +124,14 @@ class UserController extends AbstractController
             $user->setNickname($jsonDecode['nickname']);
         }
         if (isset($jsonDecode["password"])) {
+            // hash the clean password
             $passwordHash= $this->passwordHasher->hashPassword($user, $jsonDecode["password"]);
-            // dd($passwordHash);
             $user->setPassword($passwordHash);
         }
         
+        // add and flush the user to the database
         $this->userRepository->add($user,true);
-
+        
         return $this->json($user,Response::HTTP_CREATED,[],["groups" =>"users"]);
     }
 }
