@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Apply;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -28,9 +29,10 @@ class DashboardController extends AbstractDashboardController
     {
         
         yield MenuItem::linkToDashboard('User', 'fas fa-users');
+
         yield MenuItem::linkToDashboard('Articles', 'far fa-newspaper');
         yield MenuItem::linkToDashboard('Comment', 'far fa-comments');
-        yield MenuItem::linkToDashboard('Apply', 'fas fa-id-card-alt');
+        yield MenuItem::linkToCrud('Apply', 'fas fa-id-card-alt', Apply::class);
         yield MenuItem::linkToDashboard('Member', 'fas fa-headset');
         yield MenuItem::linkToDashboard('Game', 'fas fa-gamepad');
         yield MenuItem::linkToDashboard('SocialNetwork', 'fab fa-twitter-square');
