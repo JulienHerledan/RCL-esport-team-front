@@ -19,28 +19,26 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 class ApplyCrudController extends AbstractCrudController
 {
-    public static function getEntityFqcn(): string
-    {
-        return Apply::class;
-    }
+  public static function getEntityFqcn(): string
+  {
+    return Apply::class;
+  }
 
-    
-    public function configureFields(string $pageName): iterable
-    {
-        return [
-            IdField::new('id')->hideOnForm(),
-            TextField::new('name')->hideOnForm(),
-            EmailField::new('email')->hideOnForm(),
-            TelephoneField::new('phoneNumber')->hideOnForm(),
-            TextEditorField::new('presentation')->onlyOnDetail(),
-            BooleanField::new('IsAccepted'),
-            AssociationField::new('acceptedBy')->hideOnForm(),
-            DateField::new('createdAt')->hideOnForm(),
-            DateField::new('updatedAt')->hideOnForm(),
-        ];
-    }
+  public function configureFields(string $pageName): iterable
+  {
+    return [
+      IdField::new('id')->hideOnForm(),
+      TextField::new('name')->hideOnForm(),
+      EmailField::new('email')->hideOnForm(),
+      TelephoneField::new('phoneNumber')->hideOnForm(),
+      TextEditorField::new('presentation')->hideOnForm(),
+      BooleanField::new('IsAccepted'),
+      AssociationField::new('acceptedBy')->hideOnForm(),
+      DateField::new('createdAt')->hideOnForm(),
+      DateField::new('updatedAt')->hideOnForm(),
+    ];
+  }
 
-    
     public function configureActions(Actions $actions): Actions
     {
         return $actions
