@@ -25,8 +25,9 @@ class SocialNetworkLink
     private $link;
 
     /**
-     * @ORM\ManyToOne(targetEntity=member::class, inversedBy="socialNetworkLinks")
+     * @ORM\ManyToOne(targetEntity=Member::class, inversedBy="socialNetworkLinks")
      * @ORM\JoinColumn(nullable=false)
+     * 
      */
     private $member;
 

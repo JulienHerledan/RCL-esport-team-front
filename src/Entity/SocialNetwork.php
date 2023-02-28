@@ -52,8 +52,6 @@ class SocialNetwork
         $this->socialNetworkLinks = new ArrayCollection();
     }
 
-
-
     public function getId(): ?int
     {
         return $this->id;
