@@ -116,6 +116,10 @@ class UserController extends AbstractController
          */
         $user=$this->getUser();
 
+        if(!isset($user)){
+            $this->json(["erreur" => "Erreur lors de la recupération de l'utilisateur"], Response::HTTP_BAD_REQUEST);
+        }
+
         // check the modifcations of the user : mail, nickanme, password
         if (isset($jsonDecode['email'])) {
             $user->setEmail($jsonDecode['email']);
@@ -131,7 +135,7 @@ class UserController extends AbstractController
         
         // add and flush the user to the database
         $this->userRepository->add($user,true);
-        
+
         return $this->json($user,Response::HTTP_CREATED,[],["groups" =>"users"]);
     }
 }
