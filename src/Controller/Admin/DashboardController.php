@@ -26,7 +26,24 @@ class DashboardController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
-        yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
+        
+        yield MenuItem::linkToDashboard('User', 'fas fa-users');
+        yield MenuItem::linkToDashboard('Articles', 'far fa-newspaper');
+        yield MenuItem::linkToDashboard('Comment', 'far fa-comments');
+        yield MenuItem::linkToDashboard('Apply', 'fas fa-id-card-alt');
+        yield MenuItem::linkToDashboard('Member', 'fas fa-headset');
+        yield MenuItem::linkToDashboard('Game', 'fas fa-gamepad');
+        yield MenuItem::linkToDashboard('SocialNetwork', 'fab fa-twitter-square');
+        yield MenuItem::linkToDashboard('SocialNetwork link', 'fas fa-link');
+        yield MenuItem::linkToDashboard('videoClip', 'fas fa-video');
+        yield MenuItem::linkToDashboard('Award', 'fas fa-trophy');
+        yield MenuItem::linkToDashboard('Competition', 'fas fa-calendar-week');
+        yield MenuItem::linkToDashboard('Matche', 'fas fa-sitemap');
+
+        
+
+        //@todo rajouter le lien vers le font office
+        // ==> MenuItem::linkToUrl
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
     }
 }
