@@ -11,6 +11,7 @@ use App\Entity\Game;
 use App\Entity\Matche;
 use App\Entity\Member;
 use App\Entity\SocialNetwork;
+use App\Entity\SocialNetworkLink;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -44,7 +45,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Member', 'fas fa-headset', Member::class);
         yield MenuItem::linkToCrud('Game', 'fas fa-gamepad', Game::class);
         yield MenuItem::linkToCrud('SocialNetwork', 'fab fa-twitter-square', SocialNetwork::class);
-        yield MenuItem::linkToDashboard('SocialNetwork link', 'fas fa-link');
+        yield MenuItem::linkToCrud('SocialNetwork link', 'fas fa-link', SocialNetworkLink::class);
         yield MenuItem::linkToDashboard('videoClip', 'fas fa-video');
         yield MenuItem::linkToCrud('Award', 'fas fa-trophy', Award::class);
         yield MenuItem::linkToCrud('Competition', 'fas fa-calendar-week', Competition::class);
