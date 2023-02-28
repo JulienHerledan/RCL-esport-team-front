@@ -6,6 +6,7 @@ use App\Entity\Apply;
 use App\Entity\Article;
 use App\Entity\Award;
 use App\Entity\Comment;
+use App\Entity\Competition;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -42,7 +43,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToDashboard('SocialNetwork link', 'fas fa-link');
         yield MenuItem::linkToDashboard('videoClip', 'fas fa-video');
         yield MenuItem::linkToCrud('Award', 'fas fa-trophy', Award::class);
-        yield MenuItem::linkToDashboard('Competition', 'fas fa-calendar-week');
+        yield MenuItem::linkToCrud('Competition', 'fas fa-calendar-week', Competition::class);
         yield MenuItem::linkToDashboard('Matche', 'fas fa-sitemap');
 
         
