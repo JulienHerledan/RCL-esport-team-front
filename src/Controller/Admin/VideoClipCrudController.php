@@ -12,7 +12,6 @@ class VideoClipCrudController extends AbstractCrudController
         return VideoClip::class;
     }
 
-    /*
     public function configureFields(string $pageName): iterable
     {
         return [
@@ -21,5 +20,4 @@ class VideoClipCrudController extends AbstractCrudController
             TextEditorField::new('description'),
         ];
     }
-    */
 }
