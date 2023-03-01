@@ -16,9 +16,7 @@ class VideoClipController extends AbstractController
     public function getAll(VideoClipRepository $videoClipRepository): JsonResponse
     {
         $videos = $videoClipRepository->findAll();
-        return $this->json($videos, Response::HTTP_OK);
+        return $this->json($videos, Response::HTTP_OK, [] , ["groups" => "video-clips"] );
     }
-
-
 }
 

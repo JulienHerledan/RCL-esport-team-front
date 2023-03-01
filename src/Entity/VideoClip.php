@@ -22,13 +22,13 @@ class VideoClip
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"members"})
+     * @Groups({"members", "video-clips"})
      */
     private $link;
 
     /**
      * @ORM\Column(type="date")
-     * @Groups({"members"})
+     * @Groups({"members", "video-clips"})
      */
     private $date;
 
@@ -44,6 +44,7 @@ class VideoClip
 
     /**
      * @ORM\ManyToMany(targetEntity=Member::class, mappedBy="videoClips")
+     * @Groups({"video-clips"})
      */
     private $members;
 
