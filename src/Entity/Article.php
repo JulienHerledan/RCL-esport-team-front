@@ -83,7 +83,12 @@ class Article
         $this->comments = new ArrayCollection();
     }
 
-    public function getId(): ?int
+    public function __toString()
+    {
+      return $this->title;
+    }
+
+  public function getId(): ?int
     {
         return $this->id;
     }
