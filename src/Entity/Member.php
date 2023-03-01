@@ -21,7 +21,7 @@ class Member
 
     /**
      * @ORM\Column(type="string", length=64)
-     * @Groups({"members"})
+     * @Groups({"members", "video-clips"})
      */
     private $username;
 
