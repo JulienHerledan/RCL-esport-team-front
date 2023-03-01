@@ -8,6 +8,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\UrlField;
@@ -25,7 +26,7 @@ class CommentCrudController extends AbstractCrudController
       IdField::new('id')->hideOnForm(),
       AssociationField::new('author'),
       AssociationField::new('article'),
-      TextEditorField::new('message'),
+      TextareaField::new('message'),
       AssociationField::new('article'),
       DateField::new('createdAt'),
       DateField::new('updatedAt'),

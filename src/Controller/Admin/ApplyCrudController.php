@@ -13,6 +13,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TelephoneField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
@@ -31,7 +32,7 @@ class ApplyCrudController extends AbstractCrudController
       TextField::new('name')->hideOnForm(),
       EmailField::new('email')->hideOnForm(),
       TelephoneField::new('phoneNumber')->hideOnForm(),
-      TextEditorField::new('presentation')->hideOnForm(),
+      TextareaField::new('presentation')->hideOnForm(),
       BooleanField::new('IsAccepted'),
       AssociationField::new('acceptedBy')->hideOnForm(),
       DateField::new('createdAt')->hideOnForm(),
