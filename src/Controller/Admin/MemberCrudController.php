@@ -8,6 +8,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\UrlField;
@@ -28,7 +29,7 @@ class MemberCrudController extends AbstractCrudController
       TextField::new('lastname'),
       UrlField::new('photo'),
       IntegerField::new('age'),
-      TextEditorField::new('biography'),
+      TextareaField::new('biography'),
       DateField::new('birthday'),
       AssociationField::new('createdBy'),
       AssociationField::new('games'),
