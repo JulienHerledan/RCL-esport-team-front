@@ -21,7 +21,7 @@ class MatcheCrudController extends AbstractCrudController
   public function configureFields(string $pageName): iterable
   {
     return [
-      IdField::new('id'),
+      IdField::new('id')->hideOnForm(),
       AssociationField::new('competition'),
       TextField::new('opponent'),
       UrlField::new('opponentIcon'),
