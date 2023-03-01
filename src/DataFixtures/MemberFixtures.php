@@ -22,9 +22,8 @@ class MemberFixtures extends CoreFixture implements DependentFixtureInterface
 
     $users = $this->manager->getRepository(User::class)->findAll();
     $games = $this->manager->getRepository(Game::class)->findAll();
-    $videoClips = $this->manager->getRepository(VideoClip::class)->findAll();
 
-    $this->createMany(Member::class, 5, function (Member $member) use ($users, $games, $videoClips) {
+    $this->createMany(Member::class, 5, function (Member $member) use ($users, $games) {
       $member
         ->setCreatedBy($this->faker->randomElement($users))
         ->setUsername($this->faker->userName())
@@ -39,10 +38,6 @@ class MemberFixtures extends CoreFixture implements DependentFixtureInterface
       for ($i = 1; $i <= 2; $i++) {
         $member->addGame($this->faker->randomElement($games));
       }
-
-      for ($i = 1; $i <= 2; $i++) {
-        $member->addVideoClip($this->faker->randomElement($videoClips));
-      }
     });
   }
 
@@ -51,7 +46,6 @@ class MemberFixtures extends CoreFixture implements DependentFixtureInterface
     return array(
       UserFixtures::class,
       GameFixtures::class,
-      VideoClipFixtures::class,
     );
   }
 }
