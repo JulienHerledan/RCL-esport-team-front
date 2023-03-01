@@ -29,9 +29,6 @@ services:
     tags: [ serializer.normalizer ]
 
   ## >>>------- Listeners
-  App\EventListener\EntityPersistListener:
-    tags:
-      - { name: doctrine.event_listener, event: prePersist }
   App\EventListener\JWTCreatedListener:
     arguments: [ '@request_stack' ]
     tags:
@@ -40,6 +37,9 @@ services:
 
   ## >>>------- Subscribers
   App\EventSubscriber\ArticleSlugSubscriber:
+    tags:
+      - { name: doctrine.event_subscriber }
+  App\EventSubscriber\EntityPersistSubscriber:
     tags:
       - { name: doctrine.event_subscriber }
   ## <<<------- Subscribers
