@@ -28,7 +28,6 @@ class Article
    */
   private $title;
 
-
     /**
      * @ORM\Column(type="text")
      * @Groups({"articles"})
@@ -81,6 +80,11 @@ class Article
     public function __construct()
     {
         $this->comments = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+      return $this->title . ' / id: ' . $this->id;
     }
 
     public function getId(): ?int
