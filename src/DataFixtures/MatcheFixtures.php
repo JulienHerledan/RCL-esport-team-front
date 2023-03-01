@@ -15,12 +15,15 @@ class MatcheFixtures extends CoreFixture implements DependentFixtureInterface
 
     $competitions = $this->manager->getRepository(Competition::class)->findAll();
     $this->createMany(Matche::class, 5, function (Matche $matche) use ($competitions) {
+
+      $date = $this->faker->dateTimeBetween('-1 year', '+1 year');
+
       $matche
         ->setCompetition($this->faker->randomElement($competitions))
         ->setOpponentIcon($this->faker->getRandomImageLink(30, 30))
         ->setOpponent($this->faker->getOpponentName())
-        ->setDate($this->faker->dateTime())
-        ->setScore($this->faker->getRandomScore())
+        ->setDate($date)
+        ->setScore($date->getTimestamp() > time() ? null : $this->faker->getRandomScore())
         ->setCreatedAt(\DateTimeImmutable::createFromMutable($this->faker->dateTime()));
     });
   }
