@@ -24,8 +24,8 @@ class GameCrudController extends AbstractCrudController
       IdField::new('id')->hideOnForm(),
       TextField::new('name'),
       UrlField::new('photo'),
-      DateField::new('createdAt'),
-      DateField::new('updatedAt'),
+      DateField::new('createdAt')->onlyOnIndex(),
+      DateField::new('updatedAt')->onlyOnIndex(),
     ];
   }
 }
