@@ -37,8 +37,8 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('RCL eSport Team');
-            // ->setFaviconPath('favicon.svg')
+            ->setTitle('RCL eSport Team')
+            ->setFaviconPath('assets/images/Logo.png');
             // ->renderContentMaximized();
             // ->renderSidebarMinimized();
 
