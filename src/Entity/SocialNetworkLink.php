@@ -38,6 +38,11 @@ class SocialNetworkLink
      */
     private $socialNetwork;
 
+    public function __toString()
+    {
+        return $this->link;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
