@@ -35,8 +35,8 @@ class ApplyCrudController extends AbstractCrudController
       TextareaField::new('presentation')->hideOnForm(),
       BooleanField::new('IsAccepted'),
       AssociationField::new('acceptedBy')->hideOnForm(),
-      DateField::new('createdAt')->hideOnForm(),
-      DateField::new('updatedAt')->hideOnForm(),
+      DateField::new('createdAt')->onlyOnIndex(),
+      DateField::new('updatedAt')->onlyOnIndex(),
     ];
   }
 

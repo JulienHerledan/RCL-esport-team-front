@@ -35,8 +35,8 @@ class MemberCrudController extends AbstractCrudController
       AssociationField::new('games'),
       AssociationField::new('awards'),
       AssociationField::new('socialNetworkLinks'),
-      DateField::new('createdAt'),
-      DateField::new('updatedAt'),
+      DateField::new('createdAt')->onlyOnIndex(),
+      DateField::new('updatedAt')->onlyOnIndex(),
     ];
   }
 }

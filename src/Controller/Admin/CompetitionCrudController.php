@@ -23,8 +23,8 @@ class CompetitionCrudController extends AbstractCrudController
       IdField::new('id')->hideOnForm(),
       TextField::new('name'),
       DateField::new('date'),
-      DateField::new('createdAt'),
-      DateField::new('updatedAt'),
+      DateField::new('createdAt')->onlyOnIndex(),
+      DateField::new('updatedAt')->onlyOnIndex(),
     ];
   }
 }

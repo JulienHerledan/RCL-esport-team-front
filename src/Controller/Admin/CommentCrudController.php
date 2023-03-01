@@ -28,8 +28,8 @@ class CommentCrudController extends AbstractCrudController
       AssociationField::new('article'),
       TextareaField::new('message'),
       AssociationField::new('article'),
-      DateField::new('createdAt'),
-      DateField::new('updatedAt'),
+      DateField::new('createdAt')->onlyOnIndex(),
+      DateField::new('updatedAt')->onlyOnIndex(),
     ];
   }
 }

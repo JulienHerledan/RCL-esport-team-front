@@ -26,11 +26,11 @@ class ArticleCrudController extends AbstractCrudController
       IdField::new('id')->hideOnForm(),
       AssociationField::new('author'),
       TextField::new('title'),
-      UrlField::new('image'),
-      TextEditorField::new('resume'),
-      TextEditorField::new('content'),
-      DateField::new('createdAt'),
-      DateField::new('updatedAt'),
+      UrlField::new('image')->hideOnIndex(),
+      TextEditorField::new('resume')->hideOnIndex(),
+      TextEditorField::new('content')->hideOnIndex(),
+      DateField::new('createdAt')->onlyOnIndex(),
+      DateField::new('updatedAt')->onlyOnIndex(),
     ];
   }
 }

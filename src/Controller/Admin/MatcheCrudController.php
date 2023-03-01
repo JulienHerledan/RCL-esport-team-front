@@ -27,8 +27,8 @@ class MatcheCrudController extends AbstractCrudController
       UrlField::new('opponentIcon'),
       DateField::new('date'),
       TextField::new('score'),
-      DateField::new('createdAt'),
-      DateField::new('updatedAt'),
+      DateField::new('createdAt')->onlyOnIndex(),
+      DateField::new('updatedAt')->onlyOnIndex(),
     ];
   }
 }
