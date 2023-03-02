@@ -29,7 +29,7 @@ class MemberFixtures extends CoreFixture implements DependentFixtureInterface
         ->setUsername($this->faker->userName())
         ->setFirstname($this->faker->firstName())
         ->setLastname($this->faker->lastName())
-        ->setPhoto($this->faker->getRandomImageLink(100, 200))
+        ->setPhoto($this->faker->unique()->getMemberPhoto())
         ->setAge($this->faker->randomNumber(2))
         ->setBiography($this->faker->text(100))
         ->setBirthday($this->faker->dateTime())
