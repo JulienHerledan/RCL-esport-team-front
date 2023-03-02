@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures\Abstr;
 
+use App\DataFixtures\Provider\ArticleProvider;
 use App\DataFixtures\Provider\CompetitionProvider;
 use App\DataFixtures\Provider\GameProvider;
 use App\DataFixtures\Provider\MatcheProvider;
@@ -29,6 +30,7 @@ abstract class CoreFixture extends Fixture
     $this->faker->addProvider(new MatcheProvider($this->faker));
     $this->faker->addProvider(new SocialNetworkProvider($this->faker));
     $this->faker->addProvider(new UserProvider($this->faker));
+    $this->faker->addProvider(new ArticleProvider($this->faker));
     $this->faker->addProvider(new MemberProvider($this->faker));
   }
 
