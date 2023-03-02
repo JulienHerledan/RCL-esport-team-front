@@ -27,7 +27,6 @@ class CommentCrudController extends AbstractCrudController
       AssociationField::new('author'),
       AssociationField::new('article'),
       TextareaField::new('message'),
-      AssociationField::new('article'),
       DateField::new('createdAt')->onlyOnIndex(),
       DateField::new('updatedAt')->onlyOnIndex(),
     ];
