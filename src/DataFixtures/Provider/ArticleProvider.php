@@ -7,11 +7,11 @@ use Faker\Provider\Base;
 class ArticleProvider extends Base
 {
     private $photo = array(
-        "https://imgur.com/bCiALwj",
-        "https://imgur.com/LznM3WT",
-        "https://imgur.com/JbeaFLu",
-        "https://imgur.com/9lwYXxj",
-        "https://imgur.com/1AHh2P6",
+        "https://i.imgur.com/bCiALwj.jpeg",
+        "https://i.imgur.com/LznM3WT.jpg",
+        "https://i.imgur.com/JbeaFLu.jpg",
+        "https://i.imgur.com/9lwYXxj.jpg",
+        "https://i.imgur.com/1AHh2P6.jpg",
 
     );
 
