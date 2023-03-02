@@ -14,7 +14,6 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TelephoneField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 
@@ -40,9 +39,11 @@ class ApplyCrudController extends AbstractCrudController
     ];
   }
 
-    public function configureActions(Actions $actions): Actions
-    {
-        return $actions
-         ->add(Crud::PAGE_INDEX, Action::DETAIL);
-    }
+  public function configureActions(Actions $actions): Actions
+  {
+      return $actions
+        ->add(Crud::PAGE_INDEX, Action::DETAIL)
+        ->disable(Action::NEW)
+        ->disable(Action::EDIT);
+  }
 }
