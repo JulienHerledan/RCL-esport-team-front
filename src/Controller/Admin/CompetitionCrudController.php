@@ -20,11 +20,11 @@ class CompetitionCrudController extends AbstractCrudController
   public function configureFields(string $pageName): iterable
   {
     return [
-      IdField::new('id'),
+      IdField::new('id')->hideOnForm(),
       TextField::new('name'),
       DateField::new('date'),
-      DateField::new('createdAt'),
-      DateField::new('updatedAt'),
+      DateField::new('createdAt')->onlyOnIndex(),
+      DateField::new('updatedAt')->onlyOnIndex(),
     ];
   }
 }

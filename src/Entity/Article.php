@@ -28,7 +28,6 @@ class Article
    */
   private $title;
 
-
     /**
      * @ORM\Column(type="text")
      * @Groups({"articles"})
@@ -85,10 +84,10 @@ class Article
 
     public function __toString()
     {
-      return $this->title;
+      return $this->title . ' / id: ' . $this->id;
     }
 
-  public function getId(): ?int
+    public function getId(): ?int
     {
         return $this->id;
     }

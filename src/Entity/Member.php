@@ -113,12 +113,12 @@ class Member
       $this->awards = new ArrayCollection();
       $this->socialNetworkLinks = new ArrayCollection();
     }
-  
+
     public function __toString()
     {
       return $this->username;
     }
-  
+
     public function getId(): ?int
     {
       return $this->id;
