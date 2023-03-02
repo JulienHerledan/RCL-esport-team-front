@@ -3,6 +3,9 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Member;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
@@ -27,16 +30,22 @@ class MemberCrudController extends AbstractCrudController
       TextField::new('username'),
       TextField::new('firstname'),
       TextField::new('lastname'),
-      UrlField::new('photo'),
+      UrlField::new('photo')->hideOnIndex(),
       IntegerField::new('age'),
-      TextareaField::new('biography'),
-      DateField::new('birthday'),
+      TextareaField::new('biography')->hideOnIndex(),
+      DateField::new('birthday')->hideOnIndex(),
       AssociationField::new('createdBy'),
-      AssociationField::new('games'),
-      AssociationField::new('awards'),
-      AssociationField::new('socialNetworkLinks'),
+      AssociationField::new('games')->hideOnIndex(),
+      AssociationField::new('awards')->hideOnIndex(),
+      AssociationField::new('socialNetworkLinks')->hideOnIndex(),
       DateField::new('createdAt')->onlyOnIndex(),
       DateField::new('updatedAt')->onlyOnIndex(),
     ];
+  }
+
+  public function configureActions(Actions $actions): Actions
+  {
+      return $actions
+        ->add(Crud::PAGE_INDEX, Action::DETAIL);
   }
 }

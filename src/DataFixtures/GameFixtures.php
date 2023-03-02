@@ -13,7 +13,7 @@ class GameFixtures extends CoreFixture
 
     $this->createMany(Game::class, 5, function (Game $game) {
       $game
-        ->setName($this->faker->getGameName())
+        ->setName($this->faker->unique()->getGameName())
         ->setPhoto($this->faker->getRandomImageLink(30,30))
         ->setCreatedAt(\DateTimeImmutable::createFromMutable($this->faker->dateTime()));
     });
