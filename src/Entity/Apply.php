@@ -54,6 +54,7 @@ class Apply
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="applies")
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      */
     private $acceptedBy;
 

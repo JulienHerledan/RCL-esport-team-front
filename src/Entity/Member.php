@@ -75,7 +75,7 @@ class Member
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="member")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      * @Groups({"members"})
      */
     private $createdBy;
