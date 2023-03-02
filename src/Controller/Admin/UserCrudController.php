@@ -26,15 +26,15 @@ class UserCrudController extends AbstractCrudController
         return [
             IdField::new('id')->hideOnForm(),
             EmailField::new('email'),
+            TextField::new('nickname'),
             ArrayField::new('roles'),
-            TextField::new('password'),
-            AssociationField::new('articles'),
+            TextField::new('password')->onlyOnForms(),
+            AssociationField::new('articles')->onlyOnForms(),
             BooleanField::new('isActive'),
             DateField::new('createdAt')->onlyOnIndex(),
             DateField::new('updatedAt')->onlyOnIndex(),
-            TextField::new('nickname'),
-            AssociationField::new('members'),
-            AssociationField::new('applies'),
+            AssociationField::new('members')->onlyOnForms(),
+            AssociationField::new('applies')->onlyOnForms(),
         ];
     }
     
