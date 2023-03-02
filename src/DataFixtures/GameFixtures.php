@@ -11,7 +11,7 @@ class GameFixtures extends CoreFixture
   protected function loadFakeData(): void
   {
 
-    $this->createMany(Game::class, 5, function (Game $game) {
+    $this->createMany(Game::class, 10, function (Game $game) {
       $game
         ->setName($this->faker->unique()->getGameName())
         ->setPhoto($this->faker->getRandomImageLink(30,30))
