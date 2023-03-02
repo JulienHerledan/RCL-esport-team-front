@@ -46,7 +46,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
    */
   private $articles;
 
-
   /**
    * @ORM\Column(type="boolean")
    * @Groups({"articles"})
@@ -85,8 +84,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     $this->members = new ArrayCollection();
     $this->applies = new ArrayCollection();
   }
-
-
+  
   public function getId(): ?int
   {
     return $this->id;

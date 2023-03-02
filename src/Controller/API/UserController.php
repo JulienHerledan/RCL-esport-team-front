@@ -101,7 +101,7 @@ class UserController extends AbstractController
      * update an User
      * @Route("/api/users", name="app_api_user_update", methods={"PATCH"})
      */
-    public function update(Request $request, ValidatorInterface $validator): Response
+    public function update(Request $request): Response
     {
 
         // I getback the content of the request
@@ -137,5 +137,21 @@ class UserController extends AbstractController
         $this->userRepository->add($user,true);
 
         return $this->json($user,Response::HTTP_CREATED,[],["groups" =>"users"]);
+    }
+
+      /**
+     * delete an User
+     * @Route("/api/users", name="app_api_user_delete", methods={"DELETE"})
+     */
+    public function delete(): Response
+    {
+        // i getback the user
+        $user=$this->getUser();
+ 
+        if ($user){
+            $this->userRepository->remove($user, true);
+            return $this->json(["message" => "utilisateur supprime"], Response::HTTP_OK);
+        }
+        return $this->json(["erreur" => "Erreur lors de la recupération de l'utilisateur"], Response::HTTP_BAD_REQUEST);
     }
 }
