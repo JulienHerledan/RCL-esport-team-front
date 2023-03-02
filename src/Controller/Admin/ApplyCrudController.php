@@ -27,13 +27,13 @@ class ApplyCrudController extends AbstractCrudController
   public function configureFields(string $pageName): iterable
   {
     return [
-      IdField::new('id')->hideOnForm(),
-      TextField::new('name')->hideOnForm(),
-      EmailField::new('email')->hideOnForm(),
-      TelephoneField::new('phoneNumber')->hideOnForm(),
-      TextareaField::new('presentation')->hideOnForm(),
+      IdField::new('id')->hideOnDetail(),
+      TextField::new('name'),
+      EmailField::new('email'),
+      TelephoneField::new('phoneNumber')->hideOnIndex(),
+      TextareaField::new('presentation')->hideOnIndex(),
       BooleanField::new('IsAccepted'),
-      AssociationField::new('acceptedBy')->hideOnForm(),
+      AssociationField::new('acceptedBy'),
       DateField::new('createdAt')->onlyOnIndex(),
       DateField::new('updatedAt')->onlyOnIndex(),
     ];
