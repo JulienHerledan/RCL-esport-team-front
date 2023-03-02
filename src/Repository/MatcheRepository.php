@@ -40,7 +40,7 @@ class MatcheRepository extends ServiceEntityRepository
 
   public function findAll(): array
   {
-    return $this->findBy(array(), array('createdAt' => 'DESC'));
+    return $this->findBy(array(), array('date' => 'DESC'));
   }
 
 //    /**
