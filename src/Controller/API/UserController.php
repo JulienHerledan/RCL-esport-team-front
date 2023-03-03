@@ -151,7 +151,7 @@ class UserController extends AbstractController
 
     if ($user) {
       $this->userRepository->remove($user, true);
-      return $this->json(["message" => "utilisateur supprime"], Response::HTTP_OK);
+      return $this->json(["message" => "Utilisateur supprime"], Response::HTTP_OK);
     }
     return $this->json(["erreur" => "Erreur lors de la recupération de l'utilisateur"], Response::HTTP_BAD_REQUEST);
   }

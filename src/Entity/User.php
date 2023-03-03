@@ -31,6 +31,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
   /**
    * @ORM\Column(type="json")
+   * @Groups({"users"})
    */
   private $roles = [];
 
@@ -84,7 +85,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     $this->members = new ArrayCollection();
     $this->applies = new ArrayCollection();
   }
-  
+
   public function getId(): ?int
   {
     return $this->id;
