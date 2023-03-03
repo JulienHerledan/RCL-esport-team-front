@@ -27,5 +27,16 @@ class ArticleController extends AbstractController
     {
       return $this->json($article,Response::HTTP_OK,[],["groups" => "articles"]);
     }
+
+    /**
+     * @Route("/api/articles/{page}/{articles}", name="app_api_article_getPerPage", methods={"GET"}, requirements={"page"="\d+", "articles"="\d+"})
+     */
+    public function getPerPage(int $page, int $articles, ArticleRepository $articleRepository): JsonResponse
+    {
+
+      $articles = $articleRepository->findArticlesPerPage($page, $articles);
+
+      return $this->json($articles,Response::HTTP_OK,[],["groups" => "articles"]);
+    }
 }
 

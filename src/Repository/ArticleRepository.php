@@ -43,6 +43,11 @@ class ArticleRepository extends ServiceEntityRepository
     return $this->findBy(array(), array('createdAt' => 'DESC'));
   }
 
+  public function findArticlesPerPage(int $page, int $articles)
+  {
+    return $this->findBy(array(), array('createdAt' => 'DESC'), $articles, ($page-1)*$articles );
+  }
+
 //    /**
 //     * @return Article[] Returns an array of Article objects
 //     */
