@@ -14,6 +14,9 @@ use App\Entity\SocialNetwork;
 use App\Entity\SocialNetworkLink;
 use App\Entity\User;
 use App\Entity\VideoClip;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Config\UserMenu;
@@ -25,73 +28,87 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 class DashboardController extends AbstractDashboardController
 {
-    /**
-     * @Route("/admin", name="admin")
-     */
-    public function index(): Response
-    {
-        return parent::index();
-        // return $this->render('some/path/my-dashboard.html.twig');
-    }
 
-    public function configureDashboard(): Dashboard
-    {
-        return Dashboard::new()
-            ->setTitle('RCL eSport Team')
-            ->setFaviconPath('assets/images/Logo.png');
-            // ->renderContentMaximized();
-            // ->renderSidebarMinimized();
+  /** @var EntityManagerInterface */
+  private $entityManager;
 
-    }
+  public function __construct(EntityManagerInterface $entityManager)
+  {
 
-    public function configureUserMenu(UserInterface $user): UserMenu
-    {
+    $this->entityManager = $entityManager;
 
-        /** @var User $user */
+  }
 
-        // Usually it's better to call the parent method because that gives you a
-        // user menu with some menu items already created ("sign out", "exit impersonation", etc.)
-        // if you prefer to create the user menu from scratch, use: return UserMenu::new()->...
-        return parent::configureUserMenu($user)
-            // use the given $user object to get the user name
-            ->setName($user->getEmail())
-            // use this method if you don't want to display the name of the user
-            ->displayUserName(true)
+  /**
+   * @Route("/admin", name="admin")
+   */
+  public function index(): Response
+  {
+    return $this->render('admin/welcome.html.twig', [
+      'userCount' => $this->entityManager->getRepository(User::class)->count([]),
+      'articlesCount' => $this->entityManager->getRepository(Article::class)->count([]),
+      'commentsCount' => $this->entityManager->getRepository(Comment::class)->count([]),
+      'notResolvedApplies' => $this->entityManager->getRepository(Apply::class)->count(['isAccepted' => false]),
+    ]);
+  }
 
-            // you can return an URL with the avatar image
-            ->setAvatarUrl('https://i.imgur.com/oL8pwL0.jpg')
-            ->displayUserAvatar(true)
+  public function configureDashboard(): Dashboard
+  {
+    return Dashboard::new()
+      ->setTitle('RCL eSport Team')
+      ->setFaviconPath('assets/images/Logo.png');
+    // ->renderContentMaximized();
+    // ->renderSidebarMinimized();
 
-            ->addMenuItems([
-                MenuItem::linkToUrl('Front-Office', 'fa fa-home', 'http://localhost:3000/'),
-            ]);
-    }
+  }
 
-    public function configureMenuItems(): iterable
-    {
-        yield MenuItem::section('Users');
-        yield MenuItem::linkToCrud('Users', 'fas fa-users', User::class);
+  public function configureUserMenu(UserInterface $user): UserMenu
+  {
 
-        yield MenuItem::section('Articles');
-        yield MenuItem::linkToCrud('Articles', 'far fa-newspaper', Article::class);
-        yield MenuItem::linkToCrud('Comments', 'far fa-comments', Comment::class);
+    /** @var User $user */
 
-        yield MenuItem::section('Apply');
-        yield MenuItem::linkToCrud('Applys', 'fas fa-id-card-alt', Apply::class);
+    // Usually it's better to call the parent method because that gives you a
+    // user menu with some menu items already created ("sign out", "exit impersonation", etc.)
+    // if you prefer to create the user menu from scratch, use: return UserMenu::new()->...
+    return parent::configureUserMenu($user)
+      // use the given $user object to get the username
+      ->setName($user->getEmail())
+      // use this method if you don't want to display the name of the user
+      ->displayUserName(true)
 
-        yield MenuItem::section('Members');
-        yield MenuItem::linkToCrud('Members', 'fas fa-headset', Member::class);
-        yield MenuItem::linkToCrud('Games', 'fas fa-gamepad', Game::class);
-        yield MenuItem::linkToCrud('SocialNetworks', 'fab fa-twitter-square', SocialNetwork::class);
-        yield MenuItem::linkToCrud('SocialNetwork links', 'fas fa-link', SocialNetworkLink::class);
-        yield MenuItem::linkToCrud('VideoClips', 'fas fa-video', VideoClip::class);
-        yield MenuItem::linkToCrud('Awards', 'fas fa-trophy', Award::class);
-        yield MenuItem::linkToCrud('Competitions', 'fas fa-calendar-week', Competition::class);
-        yield MenuItem::linkToCrud('Matches', 'fas fa-sitemap', Matche::class);
+      // you can return an URL with the avatar image
+      ->setAvatarUrl('https://i.imgur.com/oL8pwL0.jpg')
+      ->displayUserAvatar(true)
+      ->addMenuItems([
+        MenuItem::linkToUrl('Front-Office', 'fa fa-home', 'http://localhost:3000/'),
+      ]);
+  }
 
-        //@todo rajouter le lien vers le font office
-        // ==> MenuItem::linkToUrl
-        // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
+  public function configureMenuItems(): iterable
+  {
+    yield MenuItem::section('Compte');
+    yield MenuItem::linkToCrud('Utilisateurs', 'fas fa-users', User::class);
 
-    }
+    yield MenuItem::section('Blog');
+    yield MenuItem::linkToCrud('Articles', 'far fa-newspaper', Article::class);
+    yield MenuItem::linkToCrud('Commentaires', 'far fa-comments', Comment::class);
+
+    yield MenuItem::section('Candidature');
+    yield MenuItem::linkToCrud('Candidature', 'fas fa-id-card-alt', Apply::class);
+
+    yield MenuItem::section('E-Sport');
+    yield MenuItem::linkToCrud('Membres équipe', 'fas fa-headset', Member::class);
+    yield MenuItem::linkToCrud('Jeux', 'fas fa-gamepad', Game::class);
+    yield MenuItem::linkToCrud('Réseaux sociaux', 'fab fa-twitter-square', SocialNetwork::class);
+    yield MenuItem::linkToCrud('Liens réseaux sociaux', 'fas fa-link', SocialNetworkLink::class);
+    yield MenuItem::linkToCrud('Clips vidéos', 'fas fa-video', VideoClip::class);
+    yield MenuItem::linkToCrud('Réussites', 'fas fa-trophy', Award::class);
+    yield MenuItem::linkToCrud('Competitions', 'fas fa-calendar-week', Competition::class);
+    yield MenuItem::linkToCrud('Matchs', 'fas fa-sitemap', Matche::class);
+
+    //@todo rajouter le lien vers le font office
+    // ==> MenuItem::linkToUrl
+    // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
+
+  }
 }
