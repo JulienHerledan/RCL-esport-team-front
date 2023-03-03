@@ -4,8 +4,22 @@ namespace App\DataFixtures\Provider;
 
 use Faker\Provider\Base;
 
+
+
 class MatcheProvider extends Base
 {
+  private $opponentIcon = array(
+    "https://i.imgur.com/KRYINVb.jpg",
+    "https://i.imgur.com/nn3FBVw.jpg",
+    "https://i.imgur.com/q7PxdxO.jpg",
+    "https://i.imgur.com/4tq2v4T.jpg",
+    "https://i.imgur.com/KLDPl30.jpg",
+    "https://i.imgur.com/NsTYzYk.png",
+    "https://i.imgur.com/TPyLOLI.png",
+    "https://i.imgur.com/zMGbZi9.png",
+    "https://i.imgur.com/7c9YywJ.png",
+    "https://i.imgur.com/NWgqOzw.png",
+  );
 
   private $opponentName = array(
     "G2 Esports",
@@ -24,5 +38,11 @@ class MatcheProvider extends Base
   {
     return self::randomElement($this->opponentName);
   }
+
+  public function getOpponentIcon(): string
+  {
+    return self::randomElement($this->opponentIcon);
+  }
+
 
 }
