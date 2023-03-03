@@ -30,7 +30,7 @@ class MemberFixtures extends CoreFixture implements DependentFixtureInterface
         ->setFirstname($this->faker->firstName())
         ->setLastname($this->faker->lastName())
         ->setPhoto($this->faker->unique()->getMemberPhoto())
-        ->setAge($this->faker->randomNumber(2))
+        ->setAge($this->faker->numberBetween(18,45))
         ->setBiography($this->faker->text(100))
         ->setBirthday($this->faker->dateTime())
         ->setCreatedAt(\DateTimeImmutable::createFromMutable($this->faker->dateTime()));
