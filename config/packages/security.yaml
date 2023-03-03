@@ -35,10 +35,15 @@ security:
         # "app_login" is the name of the route created previously
         login_path: app_admin_user_login
         check_path: app_admin_user_login
+<<<<<<< HEAD
         enable_csrf: true
         default_target_path: admin
       logout:
         target: app_admin_user_login
+=======
+      logout:
+        path: app_security_logout
+>>>>>>> 79325982429fd793113ce811b405746a18565079
 
       # activate different ways to authenticate
       # https://symfony.com/doc/current/security.html#the-firewall
