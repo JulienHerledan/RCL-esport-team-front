@@ -10,9 +10,9 @@ class CompetitionFixtures extends CoreFixture
 
   protected function loadFakeData(): void
   {
-    $this->createMany(Competition::class, 5, function (Competition $competition) {
+    $this->createMany(Competition::class, 10, function (Competition $competition) {
       $competition
-        ->setName($this->faker->getCompetitionName())
+        ->setName($this->faker->unique()->getCompetitionName())
         ->setDate($this->faker->dateTime())
         ->setCreatedAt(\DateTimeImmutable::createFromMutable($this->faker->dateTime()));
     });

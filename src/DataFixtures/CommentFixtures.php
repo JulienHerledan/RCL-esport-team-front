@@ -16,8 +16,8 @@ class CommentFixtures extends CoreFixture implements DependentFixtureInterface
     // I need bring all the users and all the articles
     $users = $this->manager->getRepository(User::class)->findAll();
     $articles = $this->manager->getRepository(Article::class)->findAll();
-    
-    $this->createMany(Comment::class, 20, function (Comment $comment) use ($users, $articles) {
+
+    $this->createMany(Comment::class, 200, function (Comment $comment) use ($users, $articles) {
       $comment
         ->setMessage($this->faker->sentence())
         ->setAuthor($this->faker->randomElement($users))
