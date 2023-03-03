@@ -47,9 +47,8 @@ class DashboardController extends AbstractDashboardController
     public function configureUserMenu(UserInterface $user): UserMenu
     {
 
-        // i get back the user to use Setemail / setNickname and setPassword
         /** @var User $user */
-        $user = $this->getUser();
+
         // Usually it's better to call the parent method because that gives you a
         // user menu with some menu items already created ("sign out", "exit impersonation", etc.)
         // if you prefer to create the user menu from scratch, use: return UserMenu::new()->...
@@ -63,9 +62,9 @@ class DashboardController extends AbstractDashboardController
             ->setAvatarUrl('https://i.imgur.com/oL8pwL0.jpg')
             ->displayUserAvatar(true)
 
-           ->addMenuItems([
-            MenuItem::linkToRoute('My Profile', 'fa fa-id-card', '...', ['...' => '...']),
-        ]);
+            ->addMenuItems([
+                MenuItem::linkToUrl('Front-Office', 'fa fa-home', 'http://localhost:3000/'),
+            ]);
     }
 
     public function configureMenuItems(): iterable

@@ -9,7 +9,7 @@
     {% endif %}
 	<div class="container">
 		<h1>Login</h1>
-		<form action="{{path("admin")}}" method="post">
+		<form action="" method="post">
 			<div class="form-group">
 				<label for="username">Email:</label>
 				<input class="form-control" type="text" id="username" name="_username" value=""/>
@@ -19,7 +19,8 @@
 				<label for="password">Password:</label>
 				<input class="form-control" type="password" id="password" name="_password"/>
 			</div>
-			{# <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"> #}
+			
+			<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
 			<button class="btn btn-success my-3" type="submit">login</button>
 		</form>
