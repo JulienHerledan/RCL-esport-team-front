@@ -43,6 +43,11 @@ class Award
         $this->members = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->competition->getName(). ' rang: ' . $this->rank;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

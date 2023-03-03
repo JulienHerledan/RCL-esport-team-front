@@ -23,8 +23,8 @@ class VideoClipCrudController extends AbstractCrudController
         return [
             IdField::new('id')->hideOnForm(),
             UrlField::new('link'),
-            DateField::new('createdAt'),
-            DateField::new('updatedAt'),
+            DateField::new('createdAt')->onlyOnIndex(),
+            DateField::new('updatedAt')->onlyOnIndex(),
         ];
     }
     
