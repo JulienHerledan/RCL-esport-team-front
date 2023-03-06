@@ -8,16 +8,16 @@ class SocialNetworkProvider extends Base
 {
 
   private $socialNetworks = array(
-    array("Facebook", "fab fa-facebook-f"),
-    array("Twitter", "fab fa-twitter"),
-    array("Instagram", "fab fa-instagram"),
-    array("LinkedIn", "fab fa-linkedin-in"),
-    array("Snapchat", "fab fa-snapchat-ghost"),
-    array("Pinterest", "fab fa-pinterest"),
-    array("Reddit", "fab fa-reddit-alien"),
-    array("YouTube", "fab fa-youtube"),
-    array("WhatsApp", "fab fa-whatsapp"),
-    array("TikTok", "fab fa-tiktok")
+    array("Facebook", "FaFacebook"),
+    array("Twitter", "FaTwitter"),
+    array("Instagram", "FaInstagram"),
+    array("LinkedIn", "FaLinkedinIn"),
+    array("Snapchat", "FaSnapchatGhost"),
+    array("Pinterest", "FaPinterest"),
+    array("Reddit", "FaReddit"),
+    array("YouTube", "FaYoutube"),
+    array("WhatsApp", "FaWhatsapp"),
+    array("TikTok", "FaTiktok")
   );
 
   public function getSocialNetwork(): array
