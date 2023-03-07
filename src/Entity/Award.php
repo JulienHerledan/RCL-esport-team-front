@@ -24,15 +24,15 @@ class Award
     /**
      * @ORM\Column(type="integer")
      * @Groups({"members"})
-     * @Assert\Range (min = 1, max = 12, minMessage = "Vous devez avoir un rang d'au moins 1", maxMessage = "Vous devez avoir un rang de maximum 12")
-     * @Assert\NotNull (message = "vous devez renseigner un rang")
+     * @Assert\Range(min = 1, max = 3, minMessage = "Votre rang ne peut être supérieur à 1st.", maxMessage = "Votre rang ne peut être inférieur à 3rd.")
+     * @Assert\NotNull
      */
     private $rank;
 
     /**
      * @ORM\ManyToMany(targetEntity=Member::class, inversedBy="awards")
-     * @Assert\NotNull (message = "Vous devez renseigner un membre")
-     * @Assert\NotBlank (message = "vous devez renseigner un membre")
+     * @Assert\NotNull
+     * @Assert\NotBlank
      */
     private $members;
 
@@ -40,8 +40,8 @@ class Award
      * @ORM\ManyToOne(targetEntity=Competition::class)
      * @ORM\JoinColumn(nullable=false)
      * @Groups({"members"})
-     * @Assert\NotNull (message = "Vous devez renseigner une competition")
-     * 
+     * @Assert\NotNull
+     *
      */
     private $competition;
 
