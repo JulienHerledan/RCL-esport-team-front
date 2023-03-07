@@ -41,7 +41,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
   /**
    * @var string The hashed password
    * @ORM\Column(type="string")
-   * @Assert\Regex(pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$", message="Le mot de passe n'est pas assez sécurisé.")
+   * @Assert\Regex(pattern="#^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$#", message="Le mot de passe n'est pas assez sécurisé.")
    */
   private $password;
 
@@ -84,6 +84,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
   /**
    * @ORM\Column(type="string", length=16)
    * @Groups({"articles", "members", "users", "comments"})
+   * @Assert\Regex(pattern="#^[a-zA-Z0-9]{4,16}$#")
    * @Assert\Length(min=4, max=16)
    */
   private $nickname;
