@@ -27,7 +27,7 @@ class Article
   /**
    * @ORM\Column(type="string", length=64)
    * @Groups({"articles","comments"})
-   * @Assert\Length(min = 1, max = 64, minMessage = "Vous devez rentrer au moins  1 caractere", maxMessage = "Vous devez rentrer moins de 64 caracteres")
+   * @Assert\Length(min = 1, max = 64)
    * @Assert\NotBlank(message= "Vous devez renseigner un titre d'article")
    * @Assert\NotNull(message= "Vous devez renseigner un titre d'article")
    */
@@ -36,18 +36,18 @@ class Article
     /**
      * @ORM\Column(type="text")
      * @Groups({"articles"})
-     * @Assert\Length(min = 10, minMessage = "Vous devez rentrer au moins 10 caractere")
-     * @Assert\NotBlank(message= "Vous devez renseigner un resume d'article")
-     * @Assert\NotNull(message= "Vous devez renseigner un resume d'article")
+     * @Assert\Length(min = 10)
+     * @Assert\NotBlank
+     * @Assert\NotNull
      */
     private $resume;
 
     /**
      * @ORM\Column(type="text")
      * @Groups({"articles"})
-     * @Assert\Length(min = 50, minMessage = "Vous devez rentrer au moins 50 caracteres")
-     * @Assert\NotBlank(message= "Vous devez renseigner un resume d'article")
-     * @Assert\NotNull(message= "Vous devez renseigner un resume d'article")
+     * @Assert\Length(min = 50)
+     * @Assert\NotBlank
+     * @Assert\NotNull
      */
     private $content;
 
@@ -81,9 +81,9 @@ class Article
      * @ORM\Column(type="string", length=255)
      * @Groups({"articles"})
      * @Assert\Url
-     * @Assert\Length(min = 10, max = 255, minMessage = "Vous devez rentrer au moins 10 caracteres", maxMessage = "Vous devez rentrer moins de 255 caracteres")
-     * @Assert\NotBlank (message = "Vous devez renseigner la photo de l'article")
-     * @Assert\NotNull (message = "Vous devez renseigner la photo de l'article")
+     * @Assert\Length(min = 10, max = 255)
+     * @Assert\NotBlank
+     * @Assert\NotNull
      */
     private $image;
 
