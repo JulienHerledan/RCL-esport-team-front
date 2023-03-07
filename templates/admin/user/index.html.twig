@@ -16,17 +16,17 @@
 
         <form action="" method="post" class="d-flex flex-column align-items-center">
 
-            <div class="input-group m-2" style="width:500px">
+            <div class="input-group my-3" style="width:500px">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon1" style="color:#1A0F0F">@ Email :</span>
+                    <span class="input-group-text" id="basic-addon1" style="color:#1A0F0F; width:110px">@ Email :</span>
                 </div>
                 <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1"
                        type="text" id="username" name="_username" value="">
             </div>
 
-            <div class="input-group m-2" style="width:500px">
+            <div class="input-group my-3" style="width:500px">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon1" style="color:#1A0F0F">Password : </span>
+                    <span class="input-group-text" id="basic-addon1" style="color:#1A0F0F; width:110px"> Password : </span>
                 </div>
                 <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1"
                        type="password" id="password" name="_password">
@@ -34,7 +34,7 @@
 
             <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
-            <button class="btn btn-success my-3" type="submit">login</button>
+            <button class="btn btn-success my-3" style="width: 200px;" type="submit">Connexion</button>
         </form>
     </div>
 
