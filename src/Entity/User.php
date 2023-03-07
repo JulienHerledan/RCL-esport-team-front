@@ -74,6 +74,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
   private $applies;
 
   /**
+   * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="author")
+   */
+  private $comments;
+
+  /**
    * @ORM\Column(type="string", length=16)
    * @Groups({"articles", "members", "users", "comments"})
    */
