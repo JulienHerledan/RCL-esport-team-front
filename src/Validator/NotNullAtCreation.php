@@ -11,7 +11,7 @@ class NotNullAtCreation extends Constraint
 {
   public $message = "Cet élément ne peut être null à la création.";
 
-  public function __construct($options = null, string $message, array $groups = null, $payload = null)
+  public function __construct($options = null, string $message = null, array $groups = null, $payload = null)
   {
     parent::__construct($options, $groups, $payload);
 
