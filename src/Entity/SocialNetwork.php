@@ -52,8 +52,6 @@ class SocialNetwork
 
     /**
      * @ORM\OneToMany(targetEntity=SocialNetworkLink::class, mappedBy="socialNetwork", orphanRemoval=true)     
-     * @Assert\NotNull
-     * @Assert\NotBlank
      */
     private $socialNetworkLinks;
 
