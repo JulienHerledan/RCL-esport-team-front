@@ -10,4 +10,11 @@ use Symfony\Component\Validator\Constraint;
 class NotNullAtCreation extends Constraint
 {
   public $message = "Cet élément ne peut être null à la création.";
+
+  public function __construct($options = null, string $message, array $groups = null, $payload = null)
+  {
+    parent::__construct($options, $groups, $payload);
+
+    $this->message = $message ?? $this->message;
+  }
 }
