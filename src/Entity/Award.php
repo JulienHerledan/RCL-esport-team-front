@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use App\Validator as AcmeAssert;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -31,8 +32,7 @@ class Award
 
     /**
      * @ORM\ManyToMany(targetEntity=Member::class, inversedBy="awards")
-     * @Assert\NotNull
-     * @Assert\NotBlank
+     * @Assert\Count(min = 1)
      */
     private $members;
 
@@ -41,7 +41,7 @@ class Award
      * @ORM\JoinColumn(nullable=false)
      * @Groups({"members"})
      * @Assert\NotNull
-     *
+     * @Assert\NotBlank
      */
     private $competition;
 
