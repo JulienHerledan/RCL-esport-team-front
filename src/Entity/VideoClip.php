@@ -25,9 +25,8 @@ class VideoClip
      * @ORM\Column(type="string", length=255)
      * @Groups({"members", "video-clips"})
      * @Assert\Url
-     * @Assert\Length(min=5, max=255, minMessage = "Vous devez rentrer au moins 5 caracteres", maxMessage = "Vous devez rentrer moins de 255 caracteres")
-     * @Assert\NotBlank (message= "Vous devez renseigner une URL")
-     * @Assert\NotNull (message= "Vous devez renseigner une URL")
+     * @Assert\NotNull(message="Vous devez rentrer une URL")
+     * @Assert\Length(min=10, max=255)
      */
     private $link;
 
@@ -35,6 +34,7 @@ class VideoClip
      * @ORM\Column(type="date")
      * @Groups({"members", "video-clips"})
      * @Assert\Type("\DateTime")
+     * @Assert\NotNull(message="Vous devez rentrer une URL")
      */
     private $date;
 

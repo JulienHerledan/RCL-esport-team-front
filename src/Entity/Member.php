@@ -57,13 +57,13 @@ class Member
     private $biography;
 
     /**
-     * @ORM\ManyToMany(targetEntity=VideoClip::class, inversedBy="member")
+     * @ORM\ManyToMany(targetEntity=VideoClip::class, inversedBy="members")
      * @Groups({"members"})
      */
     private $videoClips;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Game::class, inversedBy="member")
+     * @ORM\ManyToMany(targetEntity=Game::class, inversedBy="members")
      * @Groups({"members"})
      */
     private $games;
@@ -75,7 +75,7 @@ class Member
     private $birthday;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="member")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="members")
      * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      * @Groups({"members"})
      */
