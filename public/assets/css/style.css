@@ -1,0 +1,60 @@
+:root {
+    /* make the backend contents as wide as the browser window */
+    --body-max-width: 100%;
+    /* change the background color of the <body> */
+    --body-bg: #191515;
+    --sidebar-bg: #333030;
+    --sidebar-menu-color: #F4F3F0;
+    --sidebar-border-color: #191515;
+    --content-top-border-color: #191515;
+    --text-color-dark: #F4F3F0;
+    /* make the base font size smaller */
+    --font-size-base: 13px;
+    /* remove all border radius to make corners straight */
+    --border-radius: 0px;
+
+    --sidebar-logo-color: #F4F3F0;
+
+    --bs-primary-rgb: 109, 126, 212;
+    --bs-info-rgb: 8, 163, 247;
+    --bs-success-rgb: 44, 216, 151;
+    --bs-warning-rgb: 235, 153, 71;
+
+    --dropdown-border-color: #191515;
+    --dropdown-link-color: #F4F3F0;
+
+    --table-thead-color: #F4F3F0;
+    --pagination-color: #F4F3F0;
+    --table-cell-border-color: #333030;
+
+    --gray-200: #656161;
+    --gray-600: #F4F3F0;
+    --table-hover-cell-bg: #191515;
+    --table-selected-cell-bg: #191515;
+
+    --sidebar-menu-active-item-color: #B5DCE8;
+    --gray-300: #191515;
+}
+
+.dropdown-menu {
+    background-color: #333030;
+}
+
+tr:nth-child(1) {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+tr {
+    background-color: #333030;
+    color: white;
+}
+
+tr a {
+    color: lightblue;
+    border: none;
+}
+
+#main-menu .menu .menu-header {
+    color: #9bc5ff;
+}
