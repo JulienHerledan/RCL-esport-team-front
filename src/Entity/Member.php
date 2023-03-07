@@ -25,7 +25,7 @@ class Member
      * @ORM\Column(type="string", length=64)
      * @Groups({"members", "video-clips"})
      * @Assert\NotNull
-     * @Assert\Length(min=8, max=64)
+     * @Assert\Length(min=3, max=64)
      */
     private $username;
 
