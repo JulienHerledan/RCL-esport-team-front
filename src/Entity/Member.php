@@ -24,32 +24,40 @@ class Member
     /**
      * @ORM\Column(type="string", length=64)
      * @Groups({"members", "video-clips"})
-     * @Assert\NotNull(message="Vous devez rentrer une URL")
-     * @Assert\Length(min=10, max=64)
+     * @Assert\NotNull
+     * @Assert\Length(min=8, max=64)
      */
     private $username;
 
     /**
      * @ORM\Column(type="string", length=64)
      * @Groups({"members"})
+     * @Assert\NotNull
+     * @Assert\Length(min=1, max=64)
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=64)
      * @Groups({"members"})
+     * @Assert\NotNull
+     * @Assert\Length(min=1, max=64)
      */
     private $lastname;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"members"})
+     * @Assert\NotNull
+     * @Assert\Length(min=1, max=255)
      */
     private $photo;
 
     /**
      * @ORM\Column(type="integer")
      * @Groups({"members"})
+     * @Assert\NotNull
+     * @Assert\Range(min=18, max=99)
      */
     private $age;
 
