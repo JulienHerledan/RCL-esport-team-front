@@ -7,7 +7,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ArticleRepository::class)
@@ -27,8 +26,8 @@ class Article
    * @ORM\Column(type="string", length=64)
    * @Groups({"articles","comments"})
    * @Assert\Length(min = 1, max = 64, minMessage = "Vous devez rentrer au moins  1 caractere", maxMessage = "Vous devez rentrer moins de 64 caracteres")
-   * @Assert\NotBlank (message= "Vous devez renseigner un titre d'article")
-   * @Assert\NotNull (message= "Vous devez renseigner un titre d'article")
+   * @Assert\NotBlank(message= "Vous devez renseigner un titre d'article")
+   * @Assert\NotNull(message= "Vous devez renseigner un titre d'article")
    */
   private $title;
 
@@ -36,8 +35,8 @@ class Article
      * @ORM\Column(type="text")
      * @Groups({"articles"})
      * @Assert\Length(min = 10, minMessage = "Vous devez rentrer au moins 10 caractere")
-     * @Assert\NotBlank (message= "Vous devez renseigner un resume d'article")
-     * @Assert\NotNull (message= "Vous devez renseigner un resume d'article")
+     * @Assert\NotBlank(message= "Vous devez renseigner un resume d'article")
+     * @Assert\NotNull(message= "Vous devez renseigner un resume d'article")
      */
     private $resume;
 
@@ -45,8 +44,8 @@ class Article
      * @ORM\Column(type="text")
      * @Groups({"articles"})
      * @Assert\Length(min = 50, minMessage = "Vous devez rentrer au moins 50 caracteres")
-     * @Assert\NotBlank (message= "Vous devez renseigner un resume d'article")
-     * @Assert\NotNull (message= "Vous devez renseigner un resume d'article")
+     * @Assert\NotBlank(message= "Vous devez renseigner un resume d'article")
+     * @Assert\NotNull(message= "Vous devez renseigner un resume d'article")
      */
     private $content;
 
@@ -55,6 +54,7 @@ class Article
      * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      * @Assert\NotNull (message = "Vous devez renseigner l'auteur de l'article")
      * @Groups({"articles"})
+     * @AcmeAssert\NotNullAtCreation
      */
     private $author;
 
