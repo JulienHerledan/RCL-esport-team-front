@@ -37,7 +37,7 @@ class Matche
     /**
      * @ORM\Column(type="string", length=16, nullable=true)
      * @Groups({"matches"})
-     * @Assert\NotNull
+     * @Assert\Regex(pattern= "#^\d+\s*-\s*\d+$#")
      * @Assert\Length(min=3 , max=16)
      */
     private $score;

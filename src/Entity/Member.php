@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=MemberRepository::class)
@@ -23,6 +24,8 @@ class Member
     /**
      * @ORM\Column(type="string", length=64)
      * @Groups({"members", "video-clips"})
+     * @Assert\NotNull(message="Vous devez rentrer une URL")
+     * @Assert\Length(min=10, max=64)
      */
     private $username;
 
