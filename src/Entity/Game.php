@@ -24,14 +24,15 @@ class Game
   /**
    * @ORM\Column(type="string", length=64)
    * @Groups({"members"})
-   * @Assert\Length(min = 1, max= 64, maxMessage= "Titre trop long!")
-   * @Assert\NotBlank (message = "vous devez renseigner un jeu")
+   * @Assert\NotNull
+   * @Assert\Length(min = 1, max= 64)
    */
   private $name;
 
   /**
    * @ORM\Column(type="string", length=255)
    * @Assert\Url
+   * @Assert\Length(min = 1, max= 255)
    */
   private $photo;
 

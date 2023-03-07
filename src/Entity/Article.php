@@ -28,8 +28,8 @@ class Article
    * @ORM\Column(type="string", length=64)
    * @Groups({"articles","comments"})
    * @Assert\Length(min = 1, max = 64)
-   * @Assert\NotBlank(message= "Vous devez renseigner un titre d'article")
-   * @Assert\NotNull(message= "Vous devez renseigner un titre d'article")
+   * @Assert\NotBlank
+   * @Assert\NotNull
    */
   private $title;
 
