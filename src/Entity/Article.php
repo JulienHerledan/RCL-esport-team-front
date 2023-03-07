@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 use App\Validator as AcmeAssert;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ArticleRepository::class)
@@ -53,7 +54,6 @@ class Article
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="articles")
      * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
-     * @Assert\NotNull (message = "Vous devez renseigner l'auteur de l'article")
      * @Groups({"articles"})
      * @AcmeAssert\NotNullAtCreation
      */
