@@ -41,7 +41,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
   /**
    * @var string The hashed password
    * @ORM\Column(type="string")
-   * @Assert\Regex(pattern="#^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$#", message="Le mot de passe n'est pas assez sécurisé.")
+   * @Assert\Regex(pattern="/^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?\d)(?=.*?[#?!@$%^&*-]).{8,}$/", message="Le mot de passe n'est pas assez sécurisé.")
    */
   private $password;
 
@@ -164,9 +164,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     return $this->password;
   }
 
-  public function setPassword(string $password): self
+  public function setPassword(?string $password): self
   {
-    $this->password = $password;
+
+    if ($password !== null)
+      $this->password = $password;
 
     return $this;
   }

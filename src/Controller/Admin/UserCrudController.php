@@ -11,6 +11,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
 class UserCrudController extends AbstractCrudController
 {
@@ -26,7 +27,7 @@ class UserCrudController extends AbstractCrudController
             EmailField::new('email'),
             TextField::new('nickname'),
             ArrayField::new('roles'),
-            TextField::new('password')->onlyOnForms(),
+            TextField::new('password')->setFormType(PasswordType::class)->setRequired(false)->onlyOnForms(),
             AssociationField::new('articles')->onlyOnForms(),
             BooleanField::new('isActive'),
             DateField::new('createdAt')->onlyOnIndex(),

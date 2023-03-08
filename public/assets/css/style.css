@@ -34,6 +34,12 @@
 
     --sidebar-menu-active-item-color: #B5DCE8;
     --gray-300: #191515;
+
+    --white: #333030;
+
+    --form-label-color: #F4F3F0;
+
+    --gray-100: #656161;
 }
 
 .dropdown-menu {
@@ -57,4 +63,8 @@ tr a {
 
 #main-menu .menu .menu-header {
     color: #9bc5ff;
+}
+
+.ts-wrapper.multi .ts-control>div {
+    color: #F4F3F0;
 }
