@@ -7,6 +7,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use App\Validator as AcmeAssert;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=AwardRepository::class)
@@ -23,11 +25,14 @@ class Award
     /**
      * @ORM\Column(type="integer")
      * @Groups({"members"})
+     * @Assert\Range(min = 1, max = 3, minMessage = "Votre rang ne peut être supérieur à 1st.", maxMessage = "Votre rang ne peut être inférieur à 3rd.")
+     * @Assert\NotNull
      */
     private $rank;
 
     /**
      * @ORM\ManyToMany(targetEntity=Member::class, inversedBy="awards")
+     * @Assert\Count(min = 1)
      */
     private $members;
 
@@ -35,6 +40,8 @@ class Award
      * @ORM\ManyToOne(targetEntity=Competition::class)
      * @ORM\JoinColumn(nullable=false)
      * @Groups({"members"})
+     * @Assert\NotNull
+     * @Assert\NotBlank
      */
     private $competition;
 

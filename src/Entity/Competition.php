@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=CompetitionRepository::class)
@@ -23,13 +24,16 @@ class Competition
     /**
      * @ORM\Column(type="string", length=64)
      * @Groups({"matches", "members"})
-
+     * @Assert\NotBlank (message= "Vous devez renseigner un nom de compétition")
+     * @Assert\NotNull (message= "Vous devez renseigner un nom de compétition")
+     * @Assert\Length(min=5, max=64, minMessage = "Vous devez rentrer au moins 5 caracteres", maxMessage = "Vous devez rentrer moins de 64 caracteres")
      */
     private $name;
 
     /**
      * @ORM\Column(type="date")
      * @Groups({"matches", "members"})
+     * @Assert\Type("\DateTime")
      */
     private $date;
 

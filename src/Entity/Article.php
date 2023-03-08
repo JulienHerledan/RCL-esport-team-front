@@ -7,6 +7,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use App\Validator as AcmeAssert;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ArticleRepository::class)
@@ -25,18 +27,24 @@ class Article
   /**
    * @ORM\Column(type="string", length=64)
    * @Groups({"articles","comments"})
+   * @Assert\NotNull
+   * @Assert\Length(min = 1, max = 64)
    */
   private $title;
 
     /**
      * @ORM\Column(type="text")
      * @Groups({"articles"})
+     * @Assert\NotNull
+     * @Assert\Length(min = 10)
      */
     private $resume;
 
     /**
      * @ORM\Column(type="text")
      * @Groups({"articles"})
+     * @Assert\NotNull
+     * @Assert\Length(min = 50)
      */
     private $content;
 
@@ -44,6 +52,7 @@ class Article
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="articles")
      * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      * @Groups({"articles"})
+     * @AcmeAssert\NotNullAtCreation
      */
     private $author;
 
@@ -68,6 +77,10 @@ class Article
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"articles"})
+     * @Assert\Url
+     * @Assert\NotNull
+     * @Assert\Length(min = 10, max = 255)
+     * 
      */
     private $image;
 

@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\SocialNetworkLinkRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=SocialNetworkLinkRepository::class)
@@ -21,13 +22,16 @@ class SocialNetworkLink
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"members"})
+     * @Assert\Url
+     * @Assert\NotNull(message="Vous devez rentrer une URL")
+     * @Assert\Length(min=10, max=255)
      */
     private $link;
 
     /**
      * @ORM\ManyToOne(targetEntity=Member::class, inversedBy="socialNetworkLinks")
      * @ORM\JoinColumn(nullable=false)
-     * 
+     * @Assert\NotNull(message="Vous devez associé le lien à un membre de l'equipe")
      */
     private $member;
 
@@ -35,6 +39,7 @@ class SocialNetworkLink
      * @ORM\ManyToOne(targetEntity=SocialNetwork::class, inversedBy="socialNetworkLinks")
      * @ORM\JoinColumn(nullable=false)
      * @Groups({"members"})
+     * @Assert\NotNull(message="Vous devez asscocié le lien à un réseau social")
      */
     private $socialNetwork;
 

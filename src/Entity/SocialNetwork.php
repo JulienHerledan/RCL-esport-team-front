@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=SocialNetworkRepository::class)
@@ -23,12 +24,17 @@ class SocialNetwork
     /**
      * @ORM\Column(type="string", length=64)
      * @Groups({"members"})
+     * @Assert\NotNull
+     * @Assert\Length(min=3, max=64)
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"members"})
+     * @Assert\Url
+     * @Assert\NotNull
+     * @Assert\Length(min=10, max=255)
      */
     private $image;
 
@@ -43,7 +49,7 @@ class SocialNetwork
     private $updatedAt;
 
     /**
-     * @ORM\OneToMany(targetEntity=SocialNetworkLink::class, mappedBy="socialNetwork", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=SocialNetworkLink::class, mappedBy="socialNetwork", orphanRemoval=true)     
      */
     private $socialNetworkLinks;
 

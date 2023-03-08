@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\MatcheRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=MatcheRepository::class)
@@ -21,18 +22,23 @@ class Matche
     /**
      * @ORM\Column(type="string", length=32)
      * @Groups({"matches"})
+     * @Assert\NotNull
+     * @Assert\Length(min=1 , max=32)
      */
     private $opponent;
 
     /**
      * @ORM\Column(type="date")
      * @Groups({"matches"})
+     * @Assert\Type("\DateTime")
      */
     private $date;
 
     /**
      * @ORM\Column(type="string", length=16, nullable=true)
      * @Groups({"matches"})
+     * @Assert\Regex(pattern= "#^\d+\s*-\s*\d+$#")
+     * @Assert\Length(min=3 , max=16)
      */
     private $score;
 
@@ -52,12 +58,16 @@ class Matche
      * @ORM\ManyToOne(targetEntity=Competition::class, inversedBy="matches")
      * @ORM\JoinColumn(nullable=false)
      * @Groups({"matches"})
+     * @Assert\NotNull
      */
     private $competition;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"matches"})
+     * @Assert\Url
+     * @Assert\NotNull
+     * @Assert\Length(min=1 , max=255)
      */
     private $opponentIcon;
 

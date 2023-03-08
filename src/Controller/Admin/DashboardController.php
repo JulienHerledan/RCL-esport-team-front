@@ -17,6 +17,7 @@ use App\Entity\VideoClip;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Config\UserMenu;
@@ -57,9 +58,11 @@ class DashboardController extends AbstractDashboardController
     return Dashboard::new()
       ->setTitle('RCL eSport Team')
       ->setFaviconPath('assets/images/Logo.png');
-    // ->renderContentMaximized();
-    // ->renderSidebarMinimized();
+  }
 
+  public function configureCrud(): Crud
+  {
+    return parent::configureCrud()->setSearchFields(null);
   }
 
   public function configureUserMenu(UserInterface $user): UserMenu
@@ -82,6 +85,11 @@ class DashboardController extends AbstractDashboardController
       ->addMenuItems([
         MenuItem::linkToUrl('Front-Office', 'fa fa-home', 'http://localhost:8080/'),
       ]);
+  }
+
+  public function configureAssets(): Assets
+  {
+    return parent::configureAssets()->addCssFile("assets/css/style.css");
   }
 
   public function configureMenuItems(): iterable

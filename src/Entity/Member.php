@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=MemberRepository::class)
@@ -23,30 +24,40 @@ class Member
     /**
      * @ORM\Column(type="string", length=64)
      * @Groups({"members", "video-clips"})
+     * @Assert\NotNull
+     * @Assert\Length(min=3, max=64)
      */
     private $username;
 
     /**
      * @ORM\Column(type="string", length=64)
      * @Groups({"members"})
+     * @Assert\NotNull
+     * @Assert\Length(min=1, max=64)
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=64)
      * @Groups({"members"})
+     * @Assert\NotNull
+     * @Assert\Length(min=1, max=64)
      */
     private $lastname;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"members"})
+     * @Assert\NotNull
+     * @Assert\Length(min=1, max=255)
      */
     private $photo;
 
     /**
      * @ORM\Column(type="integer")
      * @Groups({"members"})
+     * @Assert\NotNull
+     * @Assert\Range(min=18, max=99)
      */
     private $age;
 
@@ -57,13 +68,13 @@ class Member
     private $biography;
 
     /**
-     * @ORM\ManyToMany(targetEntity=VideoClip::class, inversedBy="member")
+     * @ORM\ManyToMany(targetEntity=VideoClip::class, inversedBy="members")
      * @Groups({"members"})
      */
     private $videoClips;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Game::class, inversedBy="member")
+     * @ORM\ManyToMany(targetEntity=Game::class, inversedBy="members")
      * @Groups({"members"})
      */
     private $games;
@@ -75,7 +86,7 @@ class Member
     private $birthday;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="member")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="members")
      * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      * @Groups({"members"})
      */

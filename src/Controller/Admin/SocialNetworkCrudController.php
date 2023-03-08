@@ -26,7 +26,7 @@ class SocialNetworkCrudController extends AbstractCrudController
             UrlField::new('image'),
             DateField::new('createdAt')->onlyOnIndex(),
             DateField::new('updatedAt')->onlyOnIndex(),
-            AssociationField::new('socialNetworkLinks')
+            AssociationField::new('socialNetworkLinks')->onlyOnIndex(),
         ];
     }
     
