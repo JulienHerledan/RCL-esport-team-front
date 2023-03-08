@@ -24,19 +24,17 @@ class SocialNetwork
     /**
      * @ORM\Column(type="string", length=64)
      * @Groups({"members"})
-     * @Assert\Length(min=3, max=64)
      * @Assert\NotNull
-     * @Assert\NotBlank
+     * @Assert\Length(min=3, max=64)
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"members"})
-     * @Assert\Length(min=10, max=255)
      * @Assert\Url
      * @Assert\NotNull
-     * @Assert\NotBlank
+     * @Assert\Length(min=10, max=255)
      */
     private $image;
 

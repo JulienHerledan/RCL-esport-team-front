@@ -5,7 +5,7 @@
 {% block body %}
 
     {% if error %}
-        <div style>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
     <div class="container" style="background-color:#191515; text-align:center">
         <div class="container-fluid pt-5" style="text-align:center">
@@ -27,7 +27,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1" style="color:#191515; width:110px"> Password : </span>
                 </div>
-                <input style="background-color:#F4F3F0; color:#191515" class="form-control"type="password" id="password" name="_password">
+                <input type="password" style="background-color:#F4F3F0; color:#191515" class="form-control"  id="password" name="_password">
             </div>
 
             <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">

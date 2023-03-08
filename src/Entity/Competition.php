@@ -24,9 +24,9 @@ class Competition
     /**
      * @ORM\Column(type="string", length=64)
      * @Groups({"matches", "members"})
-     * @Assert\Length(min=5, max=64, minMessage = "Vous devez rentrer au moins 5 caracteres", maxMessage = "Vous devez rentrer moins de 64 caracteres")
      * @Assert\NotBlank (message= "Vous devez renseigner un nom de compétition")
      * @Assert\NotNull (message= "Vous devez renseigner un nom de compétition")
+     * @Assert\Length(min=5, max=64, minMessage = "Vous devez rentrer au moins 5 caracteres", maxMessage = "Vous devez rentrer moins de 64 caracteres")
      */
     private $name;
 

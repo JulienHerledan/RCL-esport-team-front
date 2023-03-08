@@ -32,6 +32,7 @@ class Game
   /**
    * @ORM\Column(type="string", length=255)
    * @Assert\Url
+   * @Assert\NotNull
    * @Assert\Length(min = 1, max= 255)
    */
   private $photo;

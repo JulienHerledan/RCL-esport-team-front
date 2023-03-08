@@ -27,27 +27,24 @@ class Article
   /**
    * @ORM\Column(type="string", length=64)
    * @Groups({"articles","comments"})
-   * @Assert\Length(min = 1, max = 64)
-   * @Assert\NotBlank
    * @Assert\NotNull
+   * @Assert\Length(min = 1, max = 64)
    */
   private $title;
 
     /**
      * @ORM\Column(type="text")
      * @Groups({"articles"})
-     * @Assert\Length(min = 10)
-     * @Assert\NotBlank
      * @Assert\NotNull
+     * @Assert\Length(min = 10)
      */
     private $resume;
 
     /**
      * @ORM\Column(type="text")
      * @Groups({"articles"})
-     * @Assert\Length(min = 50)
-     * @Assert\NotBlank
      * @Assert\NotNull
+     * @Assert\Length(min = 50)
      */
     private $content;
 
@@ -81,9 +78,9 @@ class Article
      * @ORM\Column(type="string", length=255)
      * @Groups({"articles"})
      * @Assert\Url
-     * @Assert\Length(min = 10, max = 255)
-     * @Assert\NotBlank
      * @Assert\NotNull
+     * @Assert\Length(min = 10, max = 255)
+     * 
      */
     private $image;
 
