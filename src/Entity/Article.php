@@ -85,7 +85,7 @@ class Article
     private $image;
 
     /**
-     * @ORM\Column(type="string", length=64)
+     * @ORM\Column(type="string", length=128)
      * @Groups({"articles","comments"})
      */
     private $slug;
