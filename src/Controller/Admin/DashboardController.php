@@ -83,7 +83,7 @@ class DashboardController extends AbstractDashboardController
       ->setAvatarUrl('https://i.imgur.com/oL8pwL0.jpg')
       ->displayUserAvatar(true)
       ->addMenuItems([
-        MenuItem::linkToUrl('Front-Office', 'fa fa-home', 'http://localhost:8080/'),
+        MenuItem::linkToUrl('Front-Office', 'fa fa-home', 'http://rclesport.surge.sh/'),
       ]);
   }
 

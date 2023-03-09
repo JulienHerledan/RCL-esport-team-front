@@ -31,6 +31,7 @@ class Apply
 
     /**
      * @ORM\Column(type="string", length=10)
+     * @Assert\Regex(pattern="^0\d(?:\s?\d{2}){4}$")
      */
     private $phoneNumber;
 
