@@ -25,10 +25,10 @@ class Article
   private $id;
 
   /**
-   * @ORM\Column(type="string", length=64)
+   * @ORM\Column(type="string", length=128)
    * @Groups({"articles","comments"})
    * @Assert\NotNull
-   * @Assert\Length(min = 1, max = 64)
+   * @Assert\Length(min = 1, max = 128)
    */
   private $title;
 
@@ -80,7 +80,7 @@ class Article
      * @Assert\Url
      * @Assert\NotNull
      * @Assert\Length(min = 10, max = 255)
-     * 
+     *
      */
     private $image;
 
