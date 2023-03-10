@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class UserControllerTest extends WebTestCase
 {
-    public function testloginok(): void
+    public function testLoginOk(): void
     {
         $client = static::createClient();
         $crawler = $client->request('GET', '/admin/login');
@@ -16,10 +16,9 @@ class UserControllerTest extends WebTestCase
         ]);
 
         $this->assertResponseRedirects("http://localhost/admin");
-
     }
 
-    public function testloginfalse(): void
+    public function testLoginFalse(): void
     {
         $client = static::createClient();
         //client automatically follow all redirects
@@ -36,7 +35,7 @@ class UserControllerTest extends WebTestCase
         // i check the path info between actuel path info and expected
         $this->assertEquals("/admin/login", $client->getRequest()->getPathInfo());
 
-        // i check the page to ,see if we have a div with erro class
+        // i check the page to see if we have a div with error class
         $this->assertSelectorTextContains(".error", "Identifiants invalides.");
     }
 }
