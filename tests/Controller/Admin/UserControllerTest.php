@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class UserControllerTest extends WebTestCase
 {
-    public function testlogin(): void
+    public function testloginok(): void
     {
         $client = static::createClient();
         $crawler = $client->request('GET', '/admin/login');
@@ -16,6 +16,19 @@ class UserControllerTest extends WebTestCase
         ]);
 
         $this->assertResponseRedirects("http://localhost/admin");
+
+    }
+
+    public function testloginfalse(): void
+    {
+        $client = static::createClient();
+        $crawler = $client->request('GET', '/admin/login');
+        $crawler = $client->submitForm("Connexion", [
+            "_username" => "admin1@gmail.com",
+            "_password" => "admin1",
+        ]);
+
+        $this->assertResponseRedirects("http://localhost/admin/login");
 
     }
 }
