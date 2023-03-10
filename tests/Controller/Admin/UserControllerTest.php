@@ -6,12 +6,16 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class UserControllerTest extends WebTestCase
 {
-    public function testSomething(): void
+    public function testlogin(): void
     {
         $client = static::createClient();
-        $crawler = $client->request('GET', '/');
+        $crawler = $client->request('GET', '/admin/login');
+        $crawler = $client->submitForm("Connexion", [
+            "_username" => "admin@gmail.com",
+            "_password" => "admin",
+        ]);
 
-        $this->assertResponseIsSuccessful();
-        $this->assertSelectorTextContains('h1', 'Hello World');
+        $this->assertResponseRedirects("http://localhost/admin");
+
     }
 }
