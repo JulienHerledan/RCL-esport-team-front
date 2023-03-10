@@ -14,7 +14,7 @@
         <form action="" method="post" class="d-flex flex-column align-items-center">
 
             {% if error %}
-                <div style="padding: 10px; background-color: rgba(238,88,55,0.3); border: 1px solid rgba(238,88,55,1); border-radius: 10px; color: #F4F3F0">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                <div class="error" style="padding: 10px; background-color: rgba(238,88,55,0.3); border: 1px solid rgba(238,88,55,1); border-radius: 10px; color: #F4F3F0">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
             {% endif %}
 
             <div class="input-group my-3" style="width:500px">

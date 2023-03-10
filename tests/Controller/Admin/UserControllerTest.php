@@ -22,13 +22,21 @@ class UserControllerTest extends WebTestCase
     public function testloginfalse(): void
     {
         $client = static::createClient();
+        //client automatically follow all redirects
+        $client->followRedirects(true);
+        // the request
         $crawler = $client->request('GET', '/admin/login');
+
+        // SubmitForm with wrong datas
         $crawler = $client->submitForm("Connexion", [
             "_username" => "admin1@gmail.com",
             "_password" => "admin1",
         ]);
 
-        $this->assertResponseRedirects("http://localhost/admin/login");
-
+        // i check the path info between actuel path info and expected
+        $this->assertEquals("/admin/login", $client->getRequest()->getPathInfo());
+        // dd($crawler);
+        // i check the page to ,see if we have a div with erro class
+        $this->assertSelectorTextContains(".error", "Identifiants invalides.");
     }
 }
