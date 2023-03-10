@@ -35,7 +35,7 @@ class UserControllerTest extends WebTestCase
 
         // i check the path info between actuel path info and expected
         $this->assertEquals("/admin/login", $client->getRequest()->getPathInfo());
-        // dd($crawler);
+
         // i check the page to ,see if we have a div with erro class
         $this->assertSelectorTextContains(".error", "Identifiants invalides.");
     }
